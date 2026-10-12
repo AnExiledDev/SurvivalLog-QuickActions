@@ -58,6 +58,7 @@
     // between chips belong to the row too and the wheel over them scrolls the row.
     if (!row.hasAttribute('data-interactive')) row.setAttribute('data-interactive', '');
 
+    showNewBest(row);
     fitChips(row);
   }
 
@@ -81,8 +82,13 @@
 
     if (row.__slqaFrame) return;
 
+    var view = row.ownerDocument.defaultView;
+
+    // The page can be dropped between the scroll and this frame.
+    if (!view) return;
+
     row.__slqaFrame = true;
-    row.ownerDocument.defaultView.requestAnimationFrame(function () {
+    view.requestAnimationFrame(function () {
       row.__slqaFrame = false;
       fitChips(row);
 
@@ -93,6 +99,17 @@
 
   // A chip scrolled fully out of sight still has a box on screen to the game's click-through, which would swallow
   // clicks on the world there. Turning its pointer events off takes it out of that list until it scrolls back.
+  // Vue keeps the row and its scroll position when the suggestions change, so after scrolling right a new best
+  // suggestion could sit out of sight to the left. A new first chip scrolls the row back to the start.
+  function showNewBest(row) {
+    var first = row.querySelector('.recommend-chip:not(.chip-leave-active)');
+
+    if (first === row.__slqaFirst) return;
+
+    row.__slqaFirst = first;
+    row.scrollLeft = 0;
+  }
+
   function fitChips(row) {
     var view = row.getBoundingClientRect();
     var chips = row.children;
