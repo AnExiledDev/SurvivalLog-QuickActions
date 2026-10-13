@@ -51,7 +51,7 @@ Settings live in `BepInEx\config\com.dev.survivallog.quickactions.cfg`, created 
 
 Built against BepInEx `6.0.0-be.788`.
 
-Check `BepInEx\LogOutput.log` for a line starting `===== Quick Actions 0.1.0 started`. It says whether the mod is on and the chip limit. The next line should say the suggestion hook went in, and a moment later, that the page script was sent to the web UI.
+Check `BepInEx\LogOutput.log` for a line starting `===== Quick Actions`, followed by the mod's version and `started`. It says whether the mod is on and the chip limit. The next line should say the suggestion hook went in, and a moment later, that the page script was sent to the web UI.
 
 The same lines are in `BepInEx\quick-actions.log`, which survives restarts.
 
