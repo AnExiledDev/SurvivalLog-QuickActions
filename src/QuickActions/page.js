@@ -13,6 +13,8 @@
   var STYLE_ID = 'slqa-style';
   var ROW = '.action-group-middle > .recommend-chips';
   var WHEEL_LINE_PX = 16;
+  var STATUS_BOX = '.bottom-right-container';
+  var STATUS = STATUS_BOX + ' > .status-panel';
 
   // The game's row has margin-left 6px and grows with its chips. The cap keeps it clear of the panels in the middle of
   // the bottom edge. The 6px padding gives the highlight glow and the pop-in animation room inside the clipped row, and
@@ -20,7 +22,12 @@
   var CSS = [
     ROW + '{position:relative;flex-wrap:nowrap;max-width:clamp(240px,calc(50vw - 260px),640px);overflow-x:auto;overflow-y:hidden;scrollbar-width:none;padding:6px 2px;margin:-6px 0 -6px 4px}',
     ROW + '::-webkit-scrollbar{display:none}',
-    ROW + ' > .recommend-chip{flex-shrink:0}'
+    ROW + ' > .recommend-chip{flex-shrink:0}',
+    // The status bars in the bottom right sit above the action panel, and their rows are as wide as the widest row of
+    // buffs, so their empty space covers the right end of the row. Only what is drawn there takes the mouse now;
+    // buffs leaving (bf-leave-active) keep the game's own pointer-events:none.
+    STATUS_BOX + ',' + STATUS + ',' + STATUS + ' .status-row,' + STATUS + ' .buff-container{pointer-events:none}',
+    STATUS_BOX + ' > :not(.status-panel),' + STATUS + ' > :not(.status-row),' + STATUS + ' .status-row > :not(.buff-container),' + STATUS + ' .buff:not(.bf-leave-active){pointer-events:auto}'
   ].join('\n');
 
   var reported = {};

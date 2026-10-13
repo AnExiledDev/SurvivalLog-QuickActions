@@ -10,6 +10,7 @@ Survival Log suggests actions in a small row of chips above your action queue: e
 - **One chip per action**: the same action on two objects is one chip. Two music players give one "listen to music" chip, and the same food in the fridge and in your bag gives one chip. The chip uses the better-scored object, the one the game itself would have picked.
 - **Best first**: the row keeps the game's order, best suggestion on the left.
 - **Scrolls sideways**: when there are more chips than fit, the row scrolls. Move the mouse over it and use the scroll wheel.
+- **Status bars don't block the row**: the empty space beside the status bars in the bottom right no longer takes your clicks, so chips at the right end of the row can be clicked. The bars and their buffs still respond as before.
 - **The game's own rules stay**: a chip you just clicked, or an action already waiting in your queue, is left out as before, and the game still hides everything but eating and sleeping when you are starving or exhausted.
 - **A cap if you want one**: set `MaxChips` to show at most that many chips.
 - **A log file**: what the mod set up is written to `BepInEx\quick-actions.log`.
