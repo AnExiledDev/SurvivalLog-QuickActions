@@ -30,9 +30,11 @@ The row is drawn by the game's web UI, which can be finicky to change. If the ro
 - If the game's web UI changes in an update, the row may stop scrolling and grow wide instead. Lower `MaxChips` until the mod is updated.
 - The mod's own text, in the log, is in English.
 
+Works in English and Chinese: the chips show the game's own action names in your game language, the mod adds no words of its own on screen, and every config setting is explained in English and Simplified Chinese.
+
 ## Requirements
 
-- Survival Log 1.1.18317. Built for this version; a game update can break it until the mod is updated.
+- Survival Log 1.1.18902. Built for this version; a game update can break it until the mod is updated.
 - The [BepInEx Pack for Survival Log](https://www.nexusmods.com/survivallog/mods/12), the BepInEx 6 (IL2CPP) build for the game, version `6.0.0-be.788`.
 
 ## Install
