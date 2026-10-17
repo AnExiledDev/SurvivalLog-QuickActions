@@ -35,18 +35,18 @@ The row is drawn by the game's web UI, which can be finicky to change. If anythi
 [size=5]Installation[/size]
 [list=1]
 [*]Install [url=https://www.nexusmods.com/survivallog/mods/12]BepInEx[/url] [i](if no other mods were installed before, start the game once so BepInEx finishes setup, then quit)[/i].[/*]
-[*]Put [font=Courier New]QuickActions.dll[/font] in the BepInEx&#92;plugins folder inside the game folder. Full path example:
-[code]C:&#92;Program Files (x86)&#92;Steam&#92;steamapps&#92;common&#92;Survival Log&#92;BepInEx&#92;plugins&#92;QuickActions.dll[/code][/*]
+[*]Put [font=Courier New]QuickActions.dll[/font] in the BepInEx\plugins folder inside the game folder. Full path example:
+[code]C:\Program Files (x86)\Steam\steamapps\common\Survival Log\BepInEx\plugins\QuickActions.dll[/code][/*]
 [/list]
 
 [size=5]Uninstall[/size]
-Delete [font=Courier New]QuickActions.dll[/font] from the [font=Courier New]BepInEx&#92;plugins[/font] folder.
+Delete [font=Courier New]QuickActions.dll[/font] from the [font=Courier New]BepInEx\plugins[/font] folder.
 
 [size=5]Configuration[/size]
-To turn the mod off or cap the number of chips, edit [font=Courier New]BepInEx&#92;config&#92;com.dev.survivallog.quickactions.cfg[/font] while the game is closed (see [url=https://github.com/AnExiledDev/SurvivalLog-QuickActions/blob/main/CONFIG.md]CONFIG.md[/url] for every setting). Changes apply at the next game start.
+To turn the mod off or cap the number of chips, edit [font=Courier New]BepInEx\config\com.dev.survivallog.quickactions.cfg[/font] while the game is closed (see [url=https://github.com/AnExiledDev/SurvivalLog-QuickActions/blob/main/CONFIG.md]CONFIG.md[/url] for every setting). Changes apply at the next game start.
 
 [size=5]Feedback[/size]
-Found a bug or have an idea? Come say hi on the [url=https://discord.gg/trTsyxUFqg]Core Directive Discord[/url], or leave a comment here. For bugs, please include [font=Courier New]BepInEx&#92;LogOutput.log[/font] and [font=Courier New]BepInEx&#92;quick-actions.log[/font].
+Found a bug or have an idea? Come say hi on the [url=https://discord.gg/trTsyxUFqg]Core Directive Discord[/url], or leave a comment here. For bugs, please include [font=Courier New]BepInEx\LogOutput.log[/font] and [font=Courier New]BepInEx\quick-actions.log[/font].
 
 [size=5]Source and license[/size]
 Open source under MIT: [url=https://github.com/AnExiledDev/SurvivalLog-QuickActions]github.com/AnExiledDev/SurvivalLog-QuickActions[/url]
@@ -87,18 +87,18 @@ Survival Log 会在行动队列上方用一小行推荐项提示你可以做的�
 [size=5]安装[/size]
 [list=1]
 [*]安装 [url=https://www.nexusmods.com/survivallog/mods/12]BepInEx[/url] [i]（如果之前没有装过其他模组，先启动一次游戏，让 BepInEx 完成初始化，然后退出）[/i]。[/*]
-[*]把 [font=Courier New]QuickActions.dll[/font] 放进游戏目录下的 BepInEx&#92;plugins 文件夹。完整路径示例：
-[code]C:&#92;Program Files (x86)&#92;Steam&#92;steamapps&#92;common&#92;Survival Log&#92;BepInEx&#92;plugins&#92;QuickActions.dll[/code][/*]
+[*]把 [font=Courier New]QuickActions.dll[/font] 放进游戏目录下的 BepInEx\plugins 文件夹。完整路径示例：
+[code]C:\Program Files (x86)\Steam\steamapps\common\Survival Log\BepInEx\plugins\QuickActions.dll[/code][/*]
 [/list]
 
 [size=5]卸载[/size]
-从 [font=Courier New]BepInEx&#92;plugins[/font] 文件夹中删除 [font=Courier New]QuickActions.dll[/font]。
+从 [font=Courier New]BepInEx\plugins[/font] 文件夹中删除 [font=Courier New]QuickActions.dll[/font]。
 
 [size=5]配置[/size]
-如需关闭模组或限制推荐项数量，请在游戏关闭时编辑 [font=Courier New]BepInEx&#92;config&#92;com.dev.survivallog.quickactions.cfg[/font]。配置文件中每项设置都有中文说明，完整说明见 [url=https://github.com/AnExiledDev/SurvivalLog-QuickActions/blob/main/CONFIG.md]CONFIG.md[/url]（英文）。修改会在下次启动游戏时生效。
+如需关闭模组或限制推荐项数量，请在游戏关闭时编辑 [font=Courier New]BepInEx\config\com.dev.survivallog.quickactions.cfg[/font]。配置文件中每项设置都有中文说明，完整说明见 [url=https://github.com/AnExiledDev/SurvivalLog-QuickActions/blob/main/CONFIG.md]CONFIG.md[/url]（英文）。修改会在下次启动游戏时生效。
 
 [size=5]反馈[/size]
-发现 bug 或有好点子？欢迎来 [url=https://discord.gg/trTsyxUFqg]Core Directive Discord[/url] 打个招呼，或在这里留言。报告 bug 时，请附上 [font=Courier New]BepInEx&#92;LogOutput.log[/font] 和 [font=Courier New]BepInEx&#92;quick-actions.log[/font]。
+发现 bug 或有好点子？欢迎来 [url=https://discord.gg/trTsyxUFqg]Core Directive Discord[/url] 打个招呼，或在这里留言。报告 bug 时，请附上 [font=Courier New]BepInEx\LogOutput.log[/font] 和 [font=Courier New]BepInEx\quick-actions.log[/font]。
 
 [size=5]源代码与许可[/size]
 基于 MIT 许可开源：[url=https://github.com/AnExiledDev/SurvivalLog-QuickActions]github.com/AnExiledDev/SurvivalLog-QuickActions[/url]
