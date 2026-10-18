@@ -21,14 +21,10 @@ Quick Actions adds no data to your save and does not edit game files. You can re
 
 ## Known issues and limits
 
-The row is drawn by the game's web UI, which can be finicky to change. If the row looks wrong, does not scroll, a chip runs the wrong action or clicks stop reaching the world near the row, please tell me (see [Feedback](#feedback-and-bug-reports)), even if you are not sure the mod caused it. Setting `Enabled` to `false` puts the game's row back.
-
 - "The same action" means the same name and the same icon on the chip. Two different things that happen to share both become one chip.
 - A chip scrolled half out of sight can still take a click on the world just past the row's edge, up to about one chip wide. A chip scrolled fully out of sight takes no clicks. The row also takes clicks in the small gaps between chips and a few pixels above and below them, so the scroll wheel works there.
-- The scroll wheel over the row scrolls the row. Over the rest of the screen it zooms the camera as usual. If the camera also zooms while you scroll the row, please tell me.
+- The scroll wheel over the row scrolls the row. Over the rest of the screen it zooms the camera as usual.
 - The row stops growing at about a third of the screen width (less on small screens) so it stays clear of the panels in the middle of the bottom edge.
-- If the game's web UI changes in an update, the row may stop scrolling and grow wide instead. Lower `MaxChips` until the mod is updated.
-- The mod's own text, in the log, is in English.
 
 Works in English and Chinese: the chips show the game's own action names in your game language, the mod adds no words of its own on screen, and every config setting is explained in English and Simplified Chinese.
 

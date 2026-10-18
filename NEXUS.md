@@ -22,9 +22,7 @@ Works in English and Chinese.
 [*]"The same action" means the same name and icon on the chip, so two different things that share both become one chip.[/*]
 [*]A chip scrolled fully out of sight cannot be clicked until you scroll it back.[/*]
 [*]The row stops growing at about a third of the screen width so it stays clear of the middle of the bottom edge.[/*]
-[*]If a game update changes its web UI, the row may stop scrolling and grow wide instead. Lower MaxChips until the mod is updated.[/*]
 [/list]
-The row is drawn by the game's web UI, which can be finicky to change. If anything looks or behaves strangely, please tell me (see Feedback below). Setting Enabled to false puts the game's row back.
 
 [size=5]Requirements[/size]
 [list]
@@ -75,9 +73,7 @@ Survival Log 会在行动队列上方用一小行推荐项提示你可以做的�
 [*]「同一行为」指推荐项上的名称和图标都相同，所以两件名称和图标都相同的不同事物会合并成一个推荐项。[/*]
 [*]完全滚出视野的推荐项要滚回来才能点击。[/*]
 [*]这一行最多长到大约屏幕宽度的三分之一，以免挡住屏幕底部中间的内容。[/*]
-[*]如果游戏更新改动了网页界面，这一行可能不再滚动而是变宽。在模组更新前，请调低 MaxChips。[/*]
 [/list]
-这一行由游戏的网页界面绘制，改动起来比较麻烦。如果看起来或用起来有任何异常，欢迎告诉我（见下方「反馈」）。把 Enabled 设为 false 即可恢复游戏原本的那一行。
 
 [size=5]前置要求[/size]
 [list]
