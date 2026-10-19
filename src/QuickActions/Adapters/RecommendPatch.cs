@@ -22,15 +22,14 @@ internal static class RecommendPatch
     private static int _maxChips;
 
     /// <returns>Whether the hook was placed.</returns>
-    public static bool Apply(Harmony harmony, int maxChips)
-    {
-        _maxChips = maxChips;
-
-        return PatchKit.Patch(harmony, typeof(RecommendPatch), typeof(SmartRecommendManager), nameof(SmartRecommendManager.SelectTopDiversified),
+    public static bool Apply(Harmony harmony) =>
+        PatchKit.Patch(harmony, typeof(RecommendPatch), typeof(SmartRecommendManager), nameof(SmartRecommendManager.SelectTopDiversified),
             nameof(ShowEveryAction),
             "hooked SmartRecommendManager.SelectTopDiversified: the row shows every suggested action",
             "the game's row of three suggestions stays");
-    }
+
+    /// <summary>Used from the next time the game builds the row. Set on the main thread, where the row is built.</summary>
+    public static void UseMaxChips(int maxChips) => _maxChips = maxChips;
 
     private static void ShowEveryAction(SmartRecommendManager __instance, GameChips candidates, ref GameChips __result)
     {

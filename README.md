@@ -32,12 +32,14 @@ Works in English and Chinese: the chips show the game's own action names in your
 
 - Survival Log 1.1.18902. Built for this version; a game update can break it until the mod is updated.
 - The [BepInEx Pack for Survival Log](https://www.nexusmods.com/survivallog/mods/12), the BepInEx 6 (IL2CPP) build for the game, version `6.0.0-be.788`.
+- [Exiled's Toolkit](https://github.com/AnExiledDev/SurvivalLog-ExiledToolkit) 0.4.0 or newer, which applies changed settings at once. Quick Actions does not load without it.
 
 ## Install
 
 1. Install the [BepInEx Pack for Survival Log](https://www.nexusmods.com/survivallog/mods/12) (if no other mods were installed before, start the game once so BepInEx finishes setup, then quit).
-2. Download `QuickActions-x.y.z.zip` from the [latest release](https://github.com/AnExiledDev/SurvivalLog-QuickActions/releases/latest) or from Nexus Mods.
-3. Extract the zip into the game folder (the folder with `SurvivalLog.exe`). It holds a `BepInEx` folder, so the DLL lands in the right place. When asked, merge the folders. The result should be:
+2. Install Exiled's Toolkit: download `ExiledToolkit-x.y.z.zip` from [its latest release](https://github.com/AnExiledDev/SurvivalLog-ExiledToolkit/releases/latest) or from Nexus Mods, and extract it into the game folder (the folder with `SurvivalLog.exe`).
+3. Download `QuickActions-x.y.z.zip` from the [latest release](https://github.com/AnExiledDev/SurvivalLog-QuickActions/releases/latest) or from Nexus Mods.
+4. Extract the zip into the game folder (the folder with `SurvivalLog.exe`). It holds a `BepInEx` folder, so the DLL lands in the right place. When asked, merge the folders. The result should be:
    `C:\Program Files (x86)\Steam\steamapps\common\Survival Log\BepInEx\plugins\QuickActions.dll`
 
 ## Uninstall
@@ -46,13 +48,13 @@ Delete `QuickActions.dll` from the `BepInEx\plugins` folder. For a clean slate, 
 
 ## Configuration
 
-Settings live in `BepInEx\config\com.dev.survivallog.quickactions.cfg`, created the first time the game starts with the mod. Edit it while the game is closed; changes apply at the next game start. See [CONFIG.md](CONFIG.md) for every setting.
+Settings live in `BepInEx\config\com.dev.survivallog.quickactions.cfg`, created the first time the game starts with the mod. Change them in game on the Mod Manager's Mods screen, where they take effect at once, or edit the file while the game is closed. Enabled takes effect at the next game start. See [CONFIG.md](CONFIG.md) for every setting.
 
 ## Troubleshooting
 
 Built against BepInEx `6.0.0-be.788`.
 
-Check `BepInEx\LogOutput.log` for a line starting `===== Quick Actions`, followed by the mod's version and `started`. It says whether the mod is on and the chip limit. The next line should say the suggestion hook went in, and a moment later, that the page script was sent to the web UI.
+Check `BepInEx\LogOutput.log` for a line starting `===== Quick Actions`, followed by the mod's version and `started`. It says whether the mod is on. The next lines should say the suggestion hook went in and give the chip limit (`max chips`, again each time you change it), and a moment later, that the page script was sent to the web UI.
 
 The same lines are in `BepInEx\quick-actions.log`, which survives restarts.
 
