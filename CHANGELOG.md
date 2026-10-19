@@ -2,9 +2,11 @@
 
 ## 0.2.0
 
+- The Mods screen links this changelog.
+- On the Mods screen, settings that only matter while another setting is on stay hidden until it is.
 - MaxChips changed on the Mod Manager's Mods screen takes effect the next time the row is built. Enabled still needs a game restart.
 - The Mods screen shows the mod's name, description, category and links.
-- Needs Exiled's Toolkit 0.4.0 or newer.
+- Exiled's Toolkit 0.4.0 or newer is optional. With it, settings changed on the Mods screen take effect without a restart; without it, at the next game start.
 
 ## 0.1.2
 
