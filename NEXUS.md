@@ -1,5 +1,5 @@
 Name: Quick Actions
-Summary: See every action the game suggests, not just three, in one row of chips you can scroll sideways with the mouse wheel. One chip per action, best first. 在一行里显示游戏推荐的所有行为，不再只有三个，可用滚轮左右滚动。
+Summary: See every action the game suggests, not just three, in one row of chips you can scroll sideways with the mouse wheel. Best suggestion first, one chip per action even when several objects offer it, and the game's own rules stay. Set MaxChips if you want a cap. No new keys, and nothing added to your save.
 
 Description (BBCode):
 Survival Log suggests actions in a small row of chips above your action queue, but it only ever shows three of them, and only one of each kind. Quick Actions shows every suggested action, best first, in one row that scrolls sideways when it gets long. It only changes which chips the row shows; it never changes what a chip does, your character, the world or a save.
