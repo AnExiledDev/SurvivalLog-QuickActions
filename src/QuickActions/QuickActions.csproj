@@ -40,7 +40,7 @@
     <AssemblyMetadata Include="ModManager.Description" Value="See every action the game suggests, not just three, in one row of chips you can scroll sideways with the mouse wheel. One chip per action, best first.&#10;在一行里显示游戏推荐的所有行为，不再只有三个，可用滚轮左右滚动。" />
     <AssemblyMetadata Include="ModManager.Author" Value="AnExiledDev" />
     <AssemblyMetadata Include="ModManager.Category" Value="Interface" />
-    <AssemblyMetadata Include="ModManager.GameVersion" Value="1.1.18902" />
+    <AssemblyMetadata Include="ModManager.GameVersion" Value="1.1.19131" />
     <AssemblyMetadata Include="ModManager.Settings" Value="Restart" />
     <AssemblyMetadata Include="ModManager.GitHub" Value="AnExiledDev/SurvivalLog-QuickActions" />
     <AssemblyMetadata Include="ModManager.Changelog" Value="https://github.com/AnExiledDev/SurvivalLog-QuickActions/blob/main/CHANGELOG.md" />
