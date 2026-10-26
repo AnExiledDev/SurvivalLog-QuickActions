@@ -14,9 +14,10 @@ public enum ChipKind
 
 /// <summary>
 /// One suggestion the game made, reduced to what choosing the row needs. <see cref="IsAvailable"/> is the game's own
-/// verdict: false while the chip was just clicked or its action already waits in the queue.
+/// verdict: false while the chip was just clicked or its action already waits in the queue. A value, so reading the
+/// game's suggestions allocates nothing per chip.
 /// </summary>
-public sealed record Chip(
+public readonly record struct Chip(
     ChipKind Kind,
     string ActionName,
     string IconPath,

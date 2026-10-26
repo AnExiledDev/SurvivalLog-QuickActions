@@ -19,7 +19,7 @@ internal static class Chips
 
     /// <summary>The names of the chosen chips, in row order.</summary>
     public static string[] Row(IReadOnlyList<Chip> candidates, int maxChips = 0) =>
-        ChipSelection.Choose(candidates, maxChips).Select(i => candidates[i].ActionName).ToArray();
+        new ChipSelection().Choose(candidates, maxChips).Select(i => candidates[i].ActionName).ToArray();
 }
 
 public class ChipSelectionTests
@@ -47,7 +47,7 @@ public class ChipSelectionTests
         var betterPlayer = Chips.Furniture(ChipKind.Morale, "Listen to music", 6f, "icon/music", funcId: 8);
         var candidates = new[] { weakerPlayer, betterPlayer };
 
-        Assert.Equal(new[] { 1 }, ChipSelection.Choose(candidates, 0).ToArray());
+        Assert.Equal(new[] { 1 }, new ChipSelection().Choose(candidates, 0).ToArray());
     }
 
     [Fact]
@@ -79,7 +79,7 @@ public class ChipSelectionTests
             Chips.Furniture(ChipKind.Morale, "Play", 4f, "icon/piano")
         };
 
-        Assert.Equal(2, ChipSelection.Choose(candidates, 0).Count);
+        Assert.Equal(2, new ChipSelection().Choose(candidates, 0).Count);
     }
 
     [Fact]
@@ -127,7 +127,7 @@ public class ChipSelectionTests
         var otherPlayer = Chips.Furniture(ChipKind.Morale, "Listen to music", 3f, "icon/music", funcId: 7);
         var candidates = new[] { queuedPlayer, otherPlayer };
 
-        Assert.Equal(new[] { 1 }, ChipSelection.Choose(candidates, 0).ToArray());
+        Assert.Equal(new[] { 1 }, new ChipSelection().Choose(candidates, 0).ToArray());
     }
 
     [Fact]
@@ -187,8 +187,8 @@ public class ChipSelectionTests
     {
         var candidates = Enumerable.Range(1, 12).Select(i => Chips.Food("Eat food " + i, 20 - i, i)).ToArray();
 
-        Assert.Equal(12, ChipSelection.Choose(candidates, 0).Count);
-        Assert.Equal(12, ChipSelection.Choose(candidates, -3).Count);
+        Assert.Equal(12, new ChipSelection().Choose(candidates, 0).Count);
+        Assert.Equal(12, new ChipSelection().Choose(candidates, -3).Count);
     }
 
     [Fact]
@@ -207,7 +207,43 @@ public class ChipSelectionTests
     [Fact]
     public void Nothing_suggested_gives_an_empty_row()
     {
-        Assert.Empty(ChipSelection.Choose(Array.Empty<Chip>(), 0));
+        Assert.Empty(new ChipSelection().Choose(Array.Empty<Chip>(), 0));
+    }
+
+    [Fact]
+    public void The_next_row_is_built_fresh_when_the_working_lists_are_reused()
+    {
+        var selection = new ChipSelection();
+        var first = new[]
+        {
+            Chips.Dance(9f),
+            Chips.Food("Eat bread", 8f, 11),
+            Chips.Food("Eat apple", 7f, 12)
+        };
+        var second = new[]
+        {
+            Chips.Food("Eat bread", 2f, 11),
+            Chips.Furniture(ChipKind.DailyFurniture, "Exercise", 5f, "icon/bike")
+        };
+
+        selection.Choose(first, 0);
+
+        var row = selection.Choose(second, 0).Select(i => second[i].ActionName).ToArray();
+
+        // Bread was shown last row and a dance hid daily furniture last row: neither carries over.
+        Assert.Equal(new[] { "Exercise", "Eat bread" }, row);
+    }
+
+    [Fact]
+    public void A_shorter_row_after_a_longer_one_holds_only_its_own_chips()
+    {
+        var selection = new ChipSelection();
+        var longRow = Enumerable.Range(1, 8).Select(i => Chips.Food("Eat food " + i, 20 - i, i)).ToArray();
+        var shortRow = new[] { Chips.Food("Eat soup", 1f, 30) };
+
+        selection.Choose(longRow, 0);
+
+        Assert.Equal(new[] { 0 }, selection.Choose(shortRow, 0).ToArray());
     }
 }
 

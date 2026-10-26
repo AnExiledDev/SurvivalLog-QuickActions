@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.2
+
+- The game's screens run smoother: the mod no longer checks the row of suggestions several times a second, only when the chips in it change.
+- Less work in the background: the mod no longer sends its part of the screen to the game over and over, only after the game's screen reloads.
+- Building the row of suggestions takes less work each time the game refreshes it.
+- Made for Survival Log 1.1.19611.
+
 ## 0.2.1
 
 - After a game update, Mod Manager can tell you if this mod may need an update.

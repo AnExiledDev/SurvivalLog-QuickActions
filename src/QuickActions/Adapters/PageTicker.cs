@@ -16,7 +16,8 @@ public sealed class PageTicker : MonoBehaviour
     {
         try
         {
-            Page?.KeepInstalled(Time.unscaledTime);
+            // A managed clock: Unity's time getters go through the game and allocate on every call.
+            Page?.KeepInstalled(Environment.TickCount64);
         }
         catch (Exception ex)
         {
