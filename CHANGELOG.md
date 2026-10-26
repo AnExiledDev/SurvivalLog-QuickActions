@@ -2,17 +2,19 @@
 
 ## 0.2.1
 
-- After a game update, a hook that can no longer be placed is logged as an error, so the Mod Manager can mark the mod as maybe needing an update.
+- After a game update, Mod Manager can tell you if this mod may need an update.
 - Made for Survival Log 1.1.19131.
 
 ## 0.2.0
 
-- The Mods screen links this changelog.
-- On the Mods screen, settings that only matter while another setting is on stay hidden until it is.
-- MaxChips changed on the Mod Manager's Mods screen takes effect the next time the row is built. Enabled still needs a game restart.
-- The Mods screen shows the mod's name, description, category and links.
-- Exiled's Toolkit 0.4.0 or newer is optional. With it, settings changed on the Mods screen take effect without a restart; without it, at the next game start.
+- Mod Manager's Mods screen links to this changelog.
+- On the Mods screen, a setting that only matters while another one is on stays hidden until that one is on.
+- A MaxChips change on the Mods screen shows the next time the row of suggestions refreshes. Enabled still needs a game restart.
+- Mod Manager's Mods screen shows the mod's name, description, category and links.
+- Exiled's Toolkit 0.4.0 or newer is optional. With it, settings you change on the Mods screen take effect right away. Without it, they take effect the next time you start the game.
 
 ## 0.1.2
 
-First public release. See every action the game suggests, not just three, in one row of chips you can scroll sideways with the mouse wheel. One chip per action, best first.
+- First public release.
+- Every action the game suggests is shown, not just three, in one row you can scroll sideways with the mouse wheel.
+- Each action shows once, with the best suggestion first.
