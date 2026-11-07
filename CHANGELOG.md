@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0
+
+- The row suggests actions from every floor of the house, not just the floor your character is on. Clicking one walks your character there. Sleep still goes to the best bed in the house. The new WholeHouse setting turns this off.
+- Made for Survival Log 1.1.20719.
+
 ## 0.2.2
 
 - The game's screens run smoother: the mod no longer checks the row of suggestions several times a second, only when the chips in it change.

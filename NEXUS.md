@@ -1,5 +1,5 @@
 Name: Quick Actions
-Summary: See every action the game suggests, not just three, in one row of chips you can scroll sideways with the mouse wheel. Best suggestion first, one chip per action even when several objects offer it, and the game's own rules stay. Set MaxChips if you want a cap. No new keys, and nothing added to your save.
+Summary: See every action the game suggests, not just three, from every floor of the house, in one row of chips you scroll sideways with the mouse wheel. Best suggestion first, one chip per action even when several objects offer it, and sleep still goes to the best bed. Set MaxChips if you want a cap. No new keys, and nothing added to your save.
 
 Description (BBCode):
 [center][img]https://sldb.core-directive.com/media/save/1-save-safe.png[/img][/center]
@@ -10,6 +10,7 @@ Survival Log suggests actions in a small row of chips above your action queue, b
 [list]
 [*][b]Every suggestion[/b]: all the actions the game suggests show up, and several of the same kind can show at once (two foods, two ways to cheer up).[/*]
 [*][b]One chip per action[/b]: the same action on two objects is one chip. Two music players give one chip, and the same food in the fridge and in your bag gives one chip.[/*]
+[*][b]Every floor of the house[/b]: suggestions come from the basement, the ground floor and upstairs, not only the floor your character is on. Clicking one walks your character there. Sleep still goes to the best bed in the house. Turn it off with WholeHouse.[/*]
 [*][b]Best first[/b]: the row keeps the game's order, best suggestion on the left.[/*]
 [*][b]Scrolls sideways[/b]: when there are more chips than fit, move the mouse over the row and use the scroll wheel.[/*]
 [*][b]The game's own rules stay[/b]: a chip you just clicked, or an action already in your queue, is left out as before.[/*]
@@ -31,7 +32,7 @@ Works in English and Chinese.
 
 [size=5]Requirements[/size]
 [list]
-[*]Survival Log 1.1.19611. A game update can break it until the mod is updated.[/*]
+[*]Survival Log 1.1.20719. A game update can break it until the mod is updated.[/*]
 [*][url=https://www.nexusmods.com/survivallog/mods/12]BepInEx for Survival Log[/url] (BepInEx 6.0.0-be.788, IL2CPP). Install it first.[/*]
 [*]Optional: [url=https://www.nexusmods.com/survivallog/mods/61]Exiled's Toolkit[/url] 0.4.0 or newer. With it, settings changed on the Mod Manager's Mods screen take effect without restarting the game. Without it, they take effect at the next game start.[/*]
 [/list]
@@ -67,6 +68,7 @@ Survival Log 会在行动队列上方用一小行推荐项提示你可以做的�
 [list]
 [*][b]所有推荐[/b]：游戏推荐的行为全部显示，同一类也可以同时出现多个（两种食物、两种提升心情的方式）。[/*]
 [*][b]一个行为一个推荐项[/b]：对两个物体的同一行为只算一个推荐项。两台音乐播放器只显示一个，冰箱和背包里的同一种食物也只显示一个。[/*]
+[*][b]整栋房子[/b]：推荐来自地下室、一楼和楼上，而不只是角色所在的楼层。点击后角色会走过去。睡觉仍然去房子里最好的床。可用 WholeHouse 关闭。[/*]
 [*][b]最好的在最前[/b]：保持游戏的推荐顺序，最好的推荐在最左边。[/*]
 [*][b]左右滚动[/b]：推荐项放不下时，把鼠标放在这一行上用滚轮滚动。[/*]
 [*][b]保留游戏原有规则[/b]：刚点过的推荐项，或已经在队列中的行为，照旧不显示。[/*]
@@ -87,7 +89,7 @@ Survival Log 会在行动队列上方用一小行推荐项提示你可以做的�
 
 [size=5]前置要求[/size]
 [list]
-[*]Survival Log 1.1.19611。游戏更新后模组可能暂时失效，直到模组更新为止。[/*]
+[*]Survival Log 1.1.20719。游戏更新后模组可能暂时失效，直到模组更新为止。[/*]
 [*][url=https://www.nexusmods.com/survivallog/mods/12]BepInEx for Survival Log[/url]（BepInEx 6.0.0-be.788，IL2CPP），请先安装。[/*]
 [*]可选：[url=https://www.nexusmods.com/survivallog/mods/61]Exiled's Toolkit[/url] 0.4.0 或更新版本。装了它，在 Mod Manager 的「模组」界面改动的设置无需重启游戏即可生效；没装的话，改动在下次启动游戏时生效。[/*]
 [/list]

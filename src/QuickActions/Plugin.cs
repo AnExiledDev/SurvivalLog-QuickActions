@@ -12,7 +12,7 @@ namespace QuickActions;
 public sealed class Plugin : BasePlugin
 {
     private const string Guid = "com.dev.survivallog.quickactions";
-    private const string Version = "0.2.2";
+    private const string Version = "0.3.0";
 
     public override void Load()
     {
@@ -25,6 +25,9 @@ public sealed class Plugin : BasePlugin
         var maxChips = Config.Bind("General", "MaxChips", 0,
             new ConfigDescription("The most chips the row shows, in the game's order, best first. 0 shows them all. Numbers below 0 count as 0.\n" +
             "这一行最多显示几个推荐项，按游戏的推荐顺序排列，最好的在最前。0 表示全部显示，小于 0 的数按 0 处理。", null, "ModManager.ShowWhen=Enabled"));
+        var wholeHouse = Config.Bind("General", "WholeHouse", true,
+            new ConfigDescription("Suggest actions from every floor of the house, not just the floor your character is on. Clicking one walks your character there. Sleep still goes to the best bed in the house. Set to false to suggest only what is on your character's floor, as the game does.\n" +
+            "推荐房子里所有楼层的行为，而不只是角色所在的楼层。点击后角色会走过去。睡觉仍然去房子里最好的床。设为 false 则只推荐角色所在楼层的行为，和游戏自带的一样。", null, "ModManager.ShowWhen=Enabled"));
         var log = new QuickActionsLog(Log, Path.Combine(Paths.BepInExRootPath, "quick-actions.log"));
 
         PatchKit.Log = log.Write;
@@ -34,12 +37,25 @@ public sealed class Plugin : BasePlugin
         if (!isEnabled) return;
 
         // Without the hook the game's row keeps its three chips, which fit without scrolling, so the page script stays out.
-        if (!RecommendPatch.Apply(new Harmony(Guid))) return;
+        var harmony = new Harmony(Guid);
+
+        if (!RecommendPatch.Apply(harmony)) return;
 
         OptionalLive.Watch(maxChips, max =>
         {
             RecommendPatch.UseMaxChips(max);
             log.Write($"max chips {(max > 0 ? max.ToString() : "no limit")}");
+        });
+
+        // The hook goes in the first time the setting is on and then stays in; off, it returns at its first line.
+        var isWholeHouseHooked = false;
+
+        OptionalLive.Watch(wholeHouse, isOn =>
+        {
+            if (isOn && !isWholeHouseHooked) isWholeHouseHooked = WholeHousePatch.Apply(harmony);
+
+            WholeHousePatch.UseWholeHouse(isOn && isWholeHouseHooked);
+            log.Write(isOn && isWholeHouseHooked ? "whole house: suggestions from every floor" : "whole house off: suggestions from the character's floor only");
         });
 
         PageTicker.Page = new WebPage(log.Write);

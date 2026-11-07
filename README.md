@@ -8,6 +8,7 @@ Survival Log suggests actions in a small row of chips above your action queue: e
 
 - **Every suggestion**: all the actions the game suggests show up, not only the best three, and several of the same kind can show at once (two foods, two ways to cheer up).
 - **One chip per action**: the same action on two objects is one chip. Two music players give one "listen to music" chip, and the same food in the fridge and in your bag gives one chip. The chip uses the better-scored object, the one the game itself would have picked.
+- **Every floor of the house**: suggestions come from the basement, the ground floor and upstairs, not only the floor your character is on. Clicking one walks your character there, the way the game already does for a bed on another floor. Sleep still goes to the best bed in the house, as the game picks it. Set `WholeHouse` to `false` to keep the game's one-floor suggestions.
 - **Best first**: the row keeps the game's order, best suggestion on the left.
 - **Scrolls sideways**: when there are more chips than fit, the row scrolls. Move the mouse over it and use the scroll wheel.
 - **Status bars don't block the row**: the empty space beside the status bars in the bottom right no longer takes your clicks, so chips at the right end of the row can be clicked. The bars and their buffs still respond as before.
@@ -30,7 +31,7 @@ Works in English and Chinese: the chips show the game's own action names in your
 
 ## Requirements
 
-- Survival Log 1.1.19611. Built for this version; a game update can break it until the mod is updated.
+- Survival Log 1.1.20719. Built for this version; a game update can break it until the mod is updated.
 - The [BepInEx Pack for Survival Log](https://www.nexusmods.com/survivallog/mods/12), the BepInEx 6 (IL2CPP) build for the game, version `6.0.0-be.788`.
 - Optional: [Exiled's Toolkit](https://github.com/AnExiledDev/SurvivalLog-ExiledToolkit) 0.4.0 or newer. With it, settings changed on the Mod Manager's Mods screen take effect without restarting the game. Without it, they take effect at the next game start.
 
