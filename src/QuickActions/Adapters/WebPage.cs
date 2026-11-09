@@ -7,7 +7,7 @@ using QuickActions.Core;
 namespace QuickActions.Adapters;
 
 /// <summary>
-/// The mod's half that lives in the game's web UI: page.js, run in the root document the game's own pages sit in. It
+/// The mod's half that lives in the game's web UI: page.js, run in the root document the game's pages sit in. It
 /// lets the row of suggestions scroll sideways. <see cref="ScriptWatch"/> decides when to probe for it and when to send
 /// it again; this sends what it asks for and hands it the page's answers.
 /// </summary>

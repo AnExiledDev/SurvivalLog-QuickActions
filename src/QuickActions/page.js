@@ -31,7 +31,7 @@
     ROW + ' > .recommend-chip{flex-shrink:0}',
     // The status bars in the bottom right sit above the action panel, and their rows are as wide as the widest row of
     // buffs, so their empty space covers the right end of the row. Only what is drawn there takes the mouse now;
-    // buffs leaving (bf-leave-active) keep the game's own pointer-events:none.
+    // buffs leaving (bf-leave-active) keep the game's pointer-events:none.
     STATUS_BOX + ',' + STATUS + ',' + STATUS + ' .status-row,' + STATUS + ' .buff-container{pointer-events:none}',
     STATUS_BOX + ' > :not(.status-panel),' + STATUS + ' > :not(.status-row),' + STATUS + ' .status-row > :not(.buff-container),' + STATUS + ' .buff:not(.bf-leave-active){pointer-events:auto}'
   ].join('\n');

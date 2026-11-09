@@ -12,7 +12,7 @@ Survival Log suggests actions in a small row of chips above your action queue: e
 - **Best first**: the row keeps the game's order, best suggestion on the left.
 - **Scrolls sideways**: when there are more chips than fit, the row scrolls. Move the mouse over it and use the scroll wheel.
 - **Status bars don't block the row**: the empty space beside the status bars in the bottom right no longer takes your clicks, so chips at the right end of the row can be clicked. The bars and their buffs still respond as before.
-- **The game's own rules stay**: a chip you just clicked, or an action already waiting in your queue, is left out as before, and the game still hides everything but eating and sleeping when you are starving or exhausted.
+- **The game's rules stay**: a chip you just clicked, or an action already waiting in your queue, is left out as before, and the game still hides everything but eating and sleeping when you are starving or exhausted.
 - **A cap if you want one**: set `MaxChips` to show at most that many chips.
 - **A log file**: what the mod set up is written to `BepInEx\quick-actions.log`.
 
@@ -27,7 +27,7 @@ Quick Actions adds no data to your save and does not edit game files. You can re
 - The scroll wheel over the row scrolls the row. Over the rest of the screen it zooms the camera as usual.
 - The row stops growing at about a third of the screen width (less on small screens) so it stays clear of the panels in the middle of the bottom edge.
 
-Works in English and Chinese: the chips show the game's own action names in your game language, the mod adds no words of its own on screen, and every config setting is explained in English and Simplified Chinese.
+Works in English and Chinese: the chips show the game's action names in your game language, the mod adds no words of its own on screen, and every config setting is explained in English and Simplified Chinese.
 
 ## Requirements
 
@@ -60,7 +60,7 @@ Check `BepInEx\LogOutput.log` for a line starting `===== Quick Actions`, followe
 
 The same lines are in `BepInEx\quick-actions.log`, which survives restarts.
 
-If the row still shows only three chips, look in the log for a line starting `could not` or `failed`. When the mod cannot do its part, it leaves the game's own row in place.
+If the row still shows only three chips, look in the log for a line starting `could not` or `failed`. When the mod cannot do its part, it leaves the game's row in place.
 
 ## Feedback and bug reports
 

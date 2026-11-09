@@ -13,7 +13,7 @@ Survival Log suggests actions in a small row of chips above your action queue, b
 [*][b]Every floor of the house[/b]: suggestions come from the basement, the ground floor and upstairs, not only the floor your character is on. Clicking one walks your character there. Sleep still goes to the best bed in the house. Turn it off with WholeHouse.[/*]
 [*][b]Best first[/b]: the row keeps the game's order, best suggestion on the left.[/*]
 [*][b]Scrolls sideways[/b]: when there are more chips than fit, move the mouse over the row and use the scroll wheel.[/*]
-[*][b]The game's own rules stay[/b]: a chip you just clicked, or an action already in your queue, is left out as before.[/*]
+[*][b]The game's rules stay[/b]: a chip you just clicked, or an action already in your queue, is left out as before.[/*]
 [*][b]A cap if you want one[/b]: set MaxChips to show at most that many chips.[/*]
 [/list]
 No new keys or buttons. Quick Actions adds no data to your save and does not edit game files. You can remove it at any time.

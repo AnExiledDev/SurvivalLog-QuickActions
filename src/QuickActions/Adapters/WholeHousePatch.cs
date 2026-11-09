@@ -11,7 +11,7 @@ namespace QuickActions.Adapters;
 /// Adds the furniture suggestions of every floor of the house. SmartRecommendManager.CollectFurnitureFuncCandidates
 /// gathers them for the character's floor only, plus beds and urgent doors from the other floors. The hook runs it
 /// again for each other floor and keeps what it finds there, except sleep and anything already gathered. Whatever is
-/// added is checked with the game's own home-scope rule (floor and area unlocked), the one it uses for off-floor beds.
+/// added is checked with the game's home-scope rule (floor and area unlocked), the one it uses for off-floor beds.
 /// A click on such a chip walks the character there, as the game already does for an off-floor bed. Static because
 /// Harmony hooks are; the game gathers on its main thread, so the working lists are reused from one row to the next.
 /// </summary>

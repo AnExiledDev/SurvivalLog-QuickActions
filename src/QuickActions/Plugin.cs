@@ -20,7 +20,7 @@ public sealed class Plugin : BasePlugin
 
         // Turning it off would have to take the page script back out of the web UI, so it waits for the next start.
         var isEnabled = Config.Bind("General", "Enabled", true, new ConfigDescription(
-            "Show every action the game suggests in one row, one chip per action. Scroll the row sideways with the mouse wheel. The game on its own shows at most three. Set to false to keep the game's own row. Takes effect at the next game start.\n" +
+            "Show every action the game suggests in one row, one chip per action. Scroll the row sideways with the mouse wheel. Without the mod, the game shows at most three. Set to false to keep the game's row. Takes effect at the next game start.\n" +
             "在一行里显示游戏推荐的所有行为，每个行为一个推荐项，鼠标放在这一行上用滚轮左右滚动。游戏自己最多只显示三个。设为 false 则保留游戏自带的那一行。下次启动游戏时生效。", null, "ModManager.Restart")).Value;
         var maxChips = Config.Bind("General", "MaxChips", 0,
             new ConfigDescription("The most chips the row shows, in the game's order, best first. 0 shows them all. Numbers below 0 count as 0.\n" +

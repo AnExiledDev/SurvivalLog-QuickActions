@@ -6,10 +6,10 @@ Settings live in `BepInEx\config\com.dev.survivallog.quickactions.cfg`, created 
 
 | Setting | Default | What it does |
 | --- | --- | --- |
-| `Enabled` | `true` | Show every action the game suggests in one row, one chip per action. Scroll the row sideways with the mouse wheel. The game on its own shows at most three, one of each kind. `false` keeps the game's own row. |
+| `Enabled` | `true` | Show every action the game suggests in one row, one chip per action. Scroll the row sideways with the mouse wheel. Without the mod, the game shows at most three, one of each kind. `false` keeps the game's row. |
 | `WholeHouse` | `true` | Suggest actions from every floor of the house, not just the floor your character is on. Clicking one walks your character there. Sleep still goes to the best bed in the house. `false` suggests only what is on your character's floor, as the game does. |
 | `MaxChips` | `0` | The most chips the row shows, in the game's order, best first. `0` shows them all. A number below 0 counts as 0. |
 
-With `MaxChips` at `3` the row is close to the game's own, except that two chips of the same kind can show at once.
+With `MaxChips` at `3` the row is close to the game's, except that two chips of the same kind can show at once.
 
 There are no keys or buttons to set.
