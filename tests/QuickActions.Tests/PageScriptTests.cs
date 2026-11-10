@@ -4,7 +4,8 @@ namespace QuickActions.Tests;
 
 /// <summary>
 /// The row of suggestions in the web UI scrolls sideways, and chips scrolled out of sight stop taking clicks. Once the
-/// page is found it is held: the poll does no work while it stays, and the chips are measured once per change.
+/// page is found it is held: the Toolkit's page check does no work while it stays, and the chips are measured once per
+/// change. The script works whichever of it and the Toolkit's api.js the game runs first.
 /// </summary>
 public class PageScriptTests
 {
@@ -257,12 +258,43 @@ public class PageScriptTests
     }
 
     [Fact]
-    public void A_second_copy_of_the_script_adds_no_second_poll()
+    public void A_second_copy_of_the_script_does_not_fit_the_row_twice()
     {
         var script = new PageScript();
 
         script.Run(PageScript.Source());
+        script.Run($"var page = corePage({FourChips}); openFrame(page); poll(); nextFrame();");
+        script.Run("page.row().appendChild(chip(page.doc, 'Wash')); flush();");
 
+        Assert.Equal(1, script.Number("frameCallbacks.length"));
         Assert.Equal(1, script.Number("polls.length"));
+    }
+
+    [Fact]
+    public void Before_the_toolkit_loads_the_row_waits_and_is_fitted_once_it_does()
+    {
+        var script = new PageScript(isToolkitFirst: false);
+
+        script.Run($"var page = corePage({FourChips}); openFrame(page); poll(); nextFrame();");
+
+        Assert.False(script.Is("page.row().hasAttribute('data-interactive')"));
+        Assert.Equal("on,on,on,on", script.Text("clickable(page.row())"));
+
+        script.LoadToolkit();
+        script.Run("nextFrame();");
+
+        Assert.Equal("on,on,on,off", script.Text("clickable(page.row())"));
+        Assert.True(script.Is("page.row().hasAttribute('data-interactive')"));
+    }
+
+    [Fact]
+    public void With_the_toolkit_loaded_after_the_script_a_page_opened_later_is_found()
+    {
+        var script = new PageScript(isToolkitFirst: false);
+
+        script.LoadToolkit();
+        script.Run($"var page = corePage({FourChips}); openFrame(page); poll(); nextFrame();");
+
+        Assert.Equal("on,on,on,off", script.Text("clickable(page.row())"));
     }
 }

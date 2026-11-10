@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
+using ExiledToolkit.Game;
 using GameCore.HotUpdate;
 using GameCore.HotUpdate.Battle.Logic;
-using HarmonyLib;
 using QuickActions.Core;
 using GameChips = Il2CppSystem.Collections.Generic.List<GameCore.HotUpdate.SmartRecommendItemData>;
 
@@ -24,14 +24,20 @@ internal static class RecommendPatch
     private static readonly List<Chip> ChipsRead = new();
     private static readonly ChipSelection Selection = new();
 
+    private static PatchKit? _hooks;
     private static int _maxChips;
 
     /// <returns>Whether the hook was placed.</returns>
-    public static bool Apply(Harmony harmony) =>
-        PatchKit.Patch(harmony, typeof(RecommendPatch), typeof(SmartRecommendManager), nameof(SmartRecommendManager.SelectTopDiversified),
-            nameof(ShowEveryAction),
-            "hooked SmartRecommendManager.SelectTopDiversified: the row shows every suggested action",
-            "the game's row of three suggestions stays");
+    public static bool Apply(PatchKit hooks)
+    {
+        _hooks = hooks;
+
+        return hooks.Patch(
+            typeof(RecommendPatch), typeof(SmartRecommendManager), nameof(SmartRecommendManager.SelectTopDiversified),
+            postfix: nameof(ShowEveryAction),
+            done: "hooked SmartRecommendManager.SelectTopDiversified: the row shows every suggested action",
+            consequence: "the game's row of three suggestions stays");
+    }
 
     /// <summary>Used from the next time the game builds the row. Set on the main thread, where the row is built.</summary>
     public static void UseMaxChips(int maxChips) => _maxChips = maxChips;
@@ -49,7 +55,7 @@ internal static class RecommendPatch
         }
         catch (Exception ex)
         {
-            PatchKit.Fail(Doing, ex);
+            _hooks?.Fail(Doing, ex);
         }
         finally
         {

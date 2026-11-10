@@ -1,7 +1,7 @@
 using System;
+using ExiledToolkit.Game;
 using GameCore.HotUpdate;
 using GameCore.HotUpdate.Battle.Logic;
-using HarmonyLib;
 using QuickActions.Core;
 using GameChips = Il2CppSystem.Collections.Generic.List<GameCore.HotUpdate.SmartRecommendItemData>;
 
@@ -24,15 +24,21 @@ internal static class WholeHousePatch
     private static readonly GameChips Gathered = new();
 
     private static Il2CppSystem.Collections.Generic.Dictionary<int, Config_MapPoint>? _floorTable;
+    private static PatchKit? _hooks;
     private static bool _isOn;
     private static bool _isGathering;
 
     /// <returns>Whether the hook was placed.</returns>
-    public static bool Apply(Harmony harmony) =>
-        PatchKit.Patch(harmony, typeof(WholeHousePatch), typeof(SmartRecommendManager), nameof(SmartRecommendManager.CollectFurnitureFuncCandidates),
-            nameof(AddOtherFloors),
-            "hooked SmartRecommendManager.CollectFurnitureFuncCandidates: the row can show every floor of the house",
-            "the row shows the character's floor only");
+    public static bool Apply(PatchKit hooks)
+    {
+        _hooks = hooks;
+
+        return hooks.Patch(
+            typeof(WholeHousePatch), typeof(SmartRecommendManager), nameof(SmartRecommendManager.CollectFurnitureFuncCandidates),
+            postfix: nameof(AddOtherFloors),
+            done: "hooked SmartRecommendManager.CollectFurnitureFuncCandidates: the row can show every floor of the house",
+            consequence: "the row shows the character's floor only");
+    }
 
     /// <summary>Used from the next time the game builds the row. Set on the main thread, where the row is built.</summary>
     public static void UseWholeHouse(bool isOn) => _isOn = isOn;
@@ -63,7 +69,7 @@ internal static class WholeHousePatch
         }
         catch (Exception ex)
         {
-            PatchKit.Fail(Doing, ex);
+            _hooks?.Fail(Doing, ex);
         }
         finally
         {

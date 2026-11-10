@@ -2,16 +2,17 @@
 // suggestion chips above the action queue (CoreUI1) gets a width limit and scrolls sideways, so every suggestion the
 // plugin lets through stays on one line. The mouse wheel over the row scrolls it. Chips scrolled out of sight stop
 // taking clicks, so they cannot block clicks on the world behind them.
-// Once the row's page is found it is held: a slow poll only checks that it is still the same page, and mutation
-// observers on the row say when the chips change, so the chips are measured once per change instead of on every poll.
+// Exiled's Toolkit's page check finds the row's page. Once found it is held: each check only asks whether it is still
+// the same page, and mutation observers on the row say when the chips change, so the chips are measured once per
+// change instead of on every check. This script can run before the Toolkit's page API does; it waits in the Toolkit's
+// queue until then.
 // The plugin sends this script again only when the page has lost it; the guard below makes a second copy return at once.
 (function () {
   if (window.__slquickactions) return;
 
   window.__slquickactions = true;
 
-  var POLL_MS = 250;
-  var PAGE = 'CoreUI1.html';
+  var PAGE = /CoreUI1\.html/;
   var STYLE_ID = 'slqa-style';
   var MIDDLE = '.action-group-middle';
   var ROW_CLASS = 'recommend-chips';
@@ -40,12 +41,16 @@
   // highlight) or its text. The row's own class is left out: the script toggles it after every scroll.
   var ROW_CHANGES = { childList: true, subtree: true, attributes: true, attributeFilter: ['class'], characterData: true };
 
-  // Live: the browser keeps it current, so the poll reads it without searching the document.
-  var frames = document.getElementsByTagName('iframe');
+  var toolkit = null;
   var reported = {};
   var held = null;
 
-  // One note per kind of failure, so a page a game update reshaped says so once instead of every poll.
+  (window.ExiledToolkitReady = window.ExiledToolkitReady || []).push(function (etk) {
+    toolkit = etk;
+    etk.watchPages(PAGE, onPage, { everyCheck: true });
+  });
+
+  // One note per kind of failure, so a page a game update reshaped says so once instead of every check.
   function diag(kind, error) {
     if (reported[kind]) return;
 
@@ -58,13 +63,18 @@
 
   // ===== Holding the page =====
 
-  // The common case of every poll: the same page is still there, so nothing is searched or measured. A page the game
+  // The common case of every check: the same page is still there, so nothing is searched or measured. A page the game
   // dropped, or reloaded into the same frame, still reports its old elements as connected, so the frame is checked too.
-  function poll() {
+  function onPage(doc, frame) {
     if (isHeld()) return;
 
     release();
-    findPage();
+
+    try {
+      holdFrame(frame, doc);
+    } catch (e) {
+      diag('CoreUI1', e);
+    }
   }
 
   function isHeld() {
@@ -79,38 +89,14 @@
     held = null;
   }
 
-  // The game's pages are same-origin iframes of this document, created and dropped whenever the game likes.
-  function findPage() {
-    for (var i = 0; i < frames.length; i++) {
-      var frame = frames[i];
-
-      if ((frame.src || '').indexOf(PAGE) < 0) continue;
-
-      try {
-        holdFrame(frame);
-      } catch (e) {
-        diag('CoreUI1', e);
-      }
-
-      if (held) return;
-    }
-  }
-
-  function holdFrame(frame) {
-    var doc = null;
-
-    try {
-      doc = frame.contentDocument;
-    } catch (e) {}
-
-    if (!doc) return diag('page access', 'cannot reach ' + frame.src);
+  function holdFrame(frame, doc) {
     if (doc.readyState === 'loading') return;
 
     var middle = doc.querySelector(MIDDLE);
 
     if (!middle) return;
 
-    addStyle(doc);
+    toolkit.addStyle(doc, STYLE_ID, CSS);
     held = {
       frame: frame,
       doc: doc,
@@ -128,16 +114,6 @@
     takeRow();
   }
 
-  function addStyle(doc) {
-    if (doc.getElementById(STYLE_ID) || !doc.head) return;
-
-    var style = doc.createElement('style');
-
-    style.id = STYLE_ID;
-    style.textContent = CSS;
-    doc.head.appendChild(style);
-  }
-
   function guarded(kind, work) {
     return function (records) {
       try {
@@ -150,8 +126,13 @@
 
   // ===== The row =====
 
+  // The Toolkit's check skips a closed page, so the observers let it go when its row next changes.
   function takeRow() {
-    if (!held) return;
+    if (!isHeld()) {
+      release();
+
+      return;
+    }
 
     var row = childWithClass(held.middle, ROW_CLASS);
 
@@ -186,7 +167,11 @@
   }
 
   function onChipsChanged(records) {
-    if (!held) return;
+    if (!isHeld()) {
+      release();
+
+      return;
+    }
 
     for (var i = 0; i < records.length; i++) {
       var record = records[i];
@@ -317,6 +302,4 @@
       if (wanted[j] !== null && chips[j].style.pointerEvents !== wanted[j]) chips[j].style.pointerEvents = wanted[j];
     }
   }
-
-  setInterval(guarded('poll', poll), POLL_MS);
 })();

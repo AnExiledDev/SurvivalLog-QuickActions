@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.1
+
+- Now uses Exiled's Toolkit for its shared parts, so it needs Exiled's Toolkit 0.19.0 or newer.
+- Made for Survival Log 1.1.20719.
+
 ## 0.3.0
 
 - The row suggests actions from every floor of the house, not just the floor your character is on. Clicking one walks your character there. Sleep still goes to the best bed in the house. The new WholeHouse setting turns this off.

@@ -6,6 +6,9 @@
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ToolkitDll Condition="'$(ToolkitDll)' == ''">D:\devnew\game-mods\SurvivalLog\mods\sl-exiled-toolkit\src\ExiledToolkit\bin\Release\ExiledToolkit.dll</ToolkitDll>
+    <!-- Exiled's Toolkit's source folder, the one its built DLL sits two folders under (bin\Release). -->
+    <ToolkitSrc>$([System.IO.Path]::GetDirectoryName($([System.IO.Path]::GetDirectoryName($([System.IO.Path]::GetDirectoryName('$(ToolkitDll)'))))))</ToolkitSrc>
   </PropertyGroup>
 
   <!-- The pure core is compiled straight in, so the tests need none of the game or BepInEx assemblies. -->
@@ -13,9 +16,10 @@
     <Compile Include="..\..\src\QuickActions\Core\*.cs" Link="Core\%(Filename)%(Extension)" />
   </ItemGroup>
 
-  <!-- The page script, as the plugin ships it, run in Jint inside a fake Root.html. -->
+  <!-- The page script, as the plugin ships it, run in Jint with the Toolkit's page API inside a fake Root.html. -->
   <ItemGroup>
     <EmbeddedResource Include="..\..\src\QuickActions\page.js" LogicalName="QuickActions.page.js" Link="page.js" />
+    <EmbeddedResource Include="$(ToolkitSrc)\api.js" LogicalName="ExiledToolkit.api.js" Link="Toolkit\api.js" />
     <EmbeddedResource Include="FakeRoot.js" LogicalName="QuickActions.Tests.FakeRoot.js" />
   </ItemGroup>
 

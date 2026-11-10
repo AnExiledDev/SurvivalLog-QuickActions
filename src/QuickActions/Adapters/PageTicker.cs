@@ -1,4 +1,5 @@
 using System;
+using ExiledToolkit.Game;
 using UnityEngine;
 
 namespace QuickActions.Adapters;
@@ -6,6 +7,7 @@ namespace QuickActions.Adapters;
 /// <summary>The Unity object that keeps the page script in the web UI. A failure is logged once, never rethrown into the game.</summary>
 public sealed class PageTicker : MonoBehaviour
 {
+    internal static PatchKit? Hooks;
     internal static WebPage? Page;
 
     public PageTicker(IntPtr pointer) : base(pointer)
@@ -21,7 +23,7 @@ public sealed class PageTicker : MonoBehaviour
         }
         catch (Exception ex)
         {
-            PatchKit.Fail("keeping the page script in the web UI, the row may not scroll", ex);
+            Hooks?.Fail("keeping the page script in the web UI, the row may not scroll", ex);
         }
     }
 }

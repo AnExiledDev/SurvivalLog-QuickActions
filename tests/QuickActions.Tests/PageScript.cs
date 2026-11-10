@@ -3,8 +3,9 @@ using Jint;
 namespace QuickActions.Tests;
 
 /// <summary>
-/// page.js exactly as the plugin embeds it, run in Jint inside FakeRoot.js, a Root.html whose CoreUI1 frames the tests
-/// open, reload and close. Tests talk to it in JavaScript and read back plain strings, numbers and booleans.
+/// page.js exactly as the plugin embeds it, run in Jint with Exiled's Toolkit's api.js inside FakeRoot.js, a Root.html
+/// whose CoreUI1 frames the tests open, reload and close. Tests talk to it in JavaScript and read back plain strings,
+/// numbers and booleans.
 /// </summary>
 internal sealed class PageScript
 {
@@ -12,14 +13,21 @@ internal sealed class PageScript
 
     private readonly Engine _engine = new();
 
-    public PageScript()
+    /// <param name="isToolkitFirst">Whether the game runs the Toolkit's api.js before page.js; false leaves it for <see cref="LoadToolkit"/>.</param>
+    public PageScript(bool isToolkitFirst = true)
     {
         _engine.Execute(Resource("QuickActions.Tests.FakeRoot.js"));
+
+        if (isToolkitFirst) LoadToolkit();
+
         _engine.Execute(Source());
     }
 
     /// <summary>page.js as the plugin sends it.</summary>
     public static string Source() => Resource(ScriptResource);
+
+    /// <summary>Runs the Toolkit's api.js, the way the game does when it loads after page.js.</summary>
+    public void LoadToolkit() => _engine.Execute(Resource("ExiledToolkit.api.js"));
 
     public void Run(string statements) => _engine.Execute(statements);
 

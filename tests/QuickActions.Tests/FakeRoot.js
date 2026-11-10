@@ -1,6 +1,6 @@
 // Test code only. A Root.html with game page frames in it, holding just what page.js touches. Elements report their
 // changes to mutation observers, which run only on flush(), the way a browser runs them before it paints. Animation
-// frames and the script's poll run by hand. Every search of a document and every layout read is counted.
+// frames and the Toolkit's page check run by hand. Every search of a document and every layout read is counted.
 var window = this;
 var console = { warnings: [], warn: function (message) { this.warnings.push(String(message)); } };
 var counts = { searches: 0, measures: 0 };
@@ -15,7 +15,7 @@ function setInterval(callback) {
     return polls.length;
 }
 
-// One tick of the script's poll, then the observers it woke.
+// One tick of the Toolkit's page check, then the observers it woke.
 function poll() {
     polls.forEach(function (callback) { callback(); });
     flush();
@@ -253,8 +253,10 @@ function setText(node, text) {
 
 // ===== Documents =====
 
+// The Toolkit's page check skips a document whose address is empty or about:blank, the one a new frame starts with.
 function View() {
     this.listeners = {};
+    this.location = { href: 'https://game.local/page.html' };
 }
 
 View.prototype.requestAnimationFrame = function (callback) {

@@ -1,23 +1,25 @@
-using System.IO;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Unity.IL2CPP;
+using ExiledToolkit;
+using ExiledToolkit.Game;
+using ExiledToolkit.Kit;
 using HarmonyLib;
 using QuickActions.Adapters;
 
 namespace QuickActions;
 
 [BepInPlugin(Guid, "Quick Actions", Version)]
-[BepInDependency(OptionalLive.ToolkitGuid, BepInDependency.DependencyFlags.SoftDependency)]
+[BepInDependency(ToolkitGuid, ">=0.19.0")]
 public sealed class Plugin : BasePlugin
 {
     private const string Guid = "com.dev.survivallog.quickactions";
-    private const string Version = "0.3.0";
+    private const string Version = "0.3.1";
+    private const string ToolkitGuid = "com.dev.survivallog.exiledtoolkit";
+    private const long MaxLogBytes = 1024 * 1024;
 
     public override void Load()
     {
-        if (!OptionalLive.IsToolkitInstalled) Log.LogInfo(OptionalLive.MissingNote);
-
         // Turning it off would have to take the page script back out of the web UI, so it waits for the next start.
         var isEnabled = Config.Bind("General", "Enabled", true, new ConfigDescription(
             "Show every action the game suggests in one row, one chip per action. Scroll the row sideways with the mouse wheel. Without the mod, the game shows at most three. Set to false to keep the game's row. Takes effect at the next game start.\n" +
@@ -28,20 +30,18 @@ public sealed class Plugin : BasePlugin
         var wholeHouse = Config.Bind("General", "WholeHouse", true,
             new ConfigDescription("Suggest actions from every floor of the house, not just the floor your character is on. Clicking one walks your character there. Sleep still goes to the best bed in the house. Set to false to suggest only what is on your character's floor, as the game does.\n" +
             "推荐房子里所有楼层的行为，而不只是角色所在的楼层。点击后角色会走过去。睡觉仍然去房子里最好的床。设为 false 则只推荐角色所在楼层的行为，和游戏自带的一样。", null, "ModManager.ShowWhen=Enabled"));
-        var log = new QuickActionsLog(Log, Path.Combine(Paths.BepInExRootPath, "quick-actions.log"));
+        var log = new ModLog(Log, "quick-actions.log") { MaxFileBytes = MaxLogBytes };
 
-        PatchKit.Log = log.Write;
-        log.TrimIfLarge();
         log.Write($"===== Quick Actions {Version} started: {(isEnabled ? "on" : "off")}");
 
         if (!isEnabled) return;
 
         // Without the hook the game's row keeps its three chips, which fit without scrolling, so the page script stays out.
-        var harmony = new Harmony(Guid);
+        var hooks = new PatchKit(new Harmony(Guid), log.Write);
 
-        if (!RecommendPatch.Apply(harmony)) return;
+        if (!RecommendPatch.Apply(hooks)) return;
 
-        OptionalLive.Watch(maxChips, max =>
+        LiveSettings.Watch(maxChips, max =>
         {
             RecommendPatch.UseMaxChips(max);
             log.Write($"max chips {(max > 0 ? max.ToString() : "no limit")}");
@@ -50,14 +50,15 @@ public sealed class Plugin : BasePlugin
         // The hook goes in the first time the setting is on and then stays in; off, it returns at its first line.
         var isWholeHouseHooked = false;
 
-        OptionalLive.Watch(wholeHouse, isOn =>
+        LiveSettings.Watch(wholeHouse, isOn =>
         {
-            if (isOn && !isWholeHouseHooked) isWholeHouseHooked = WholeHousePatch.Apply(harmony);
+            if (isOn && !isWholeHouseHooked) isWholeHouseHooked = WholeHousePatch.Apply(hooks);
 
             WholeHousePatch.UseWholeHouse(isOn && isWholeHouseHooked);
             log.Write(isOn && isWholeHouseHooked ? "whole house: suggestions from every floor" : "whole house off: suggestions from the character's floor only");
         });
 
+        PageTicker.Hooks = hooks;
         PageTicker.Page = new WebPage(log.Write);
         AddComponent<PageTicker>();
     }
