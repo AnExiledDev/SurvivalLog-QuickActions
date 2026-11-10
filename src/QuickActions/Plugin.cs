@@ -14,7 +14,7 @@ namespace QuickActions;
 public sealed class Plugin : BasePlugin
 {
     private const string Guid = "com.dev.survivallog.quickactions";
-    private const string Version = "0.3.2";
+    private const string Version = "0.3.3";
     private const string ToolkitGuid = "com.dev.survivallog.exiledtoolkit";
     private const long MaxLogBytes = 1024 * 1024;
 
@@ -27,9 +27,9 @@ public sealed class Plugin : BasePlugin
         var maxChips = Config.Bind("General", "MaxChips", 0,
             new ConfigDescription("The most chips the row shows, in the game's order, best first. 0 shows them all. Numbers below 0 count as 0.\n" +
             "这一行最多显示几个推荐项，按游戏的推荐顺序排列，最好的在最前。0 表示全部显示，小于 0 的数按 0 处理。", null, "ModManager.ShowWhen=Enabled"));
-        var wholeHouse = Config.Bind("General", "WholeHouse", true,
-            new ConfigDescription("Suggest actions from every floor of the house, not just the floor your character is on. Clicking one walks your character there. Sleep still goes to the best bed in the house. Set to false to suggest only what is on your character's floor, as the game does.\n" +
-            "推荐房子里所有楼层的行为，而不只是角色所在的楼层。点击后角色会走过去。睡觉仍然去房子里最好的床。设为 false 则只推荐角色所在楼层的行为，和游戏自带的一样。", null, "ModManager.ShowWhen=Enabled"));
+        var wholeHouse = Config.Bind("General", "WholeHouse", false,
+            new ConfigDescription("Set to true to suggest actions from every floor of the house, not just the floor your character is on. Clicking one walks your character there. Sleep still goes to the best bed in the house. When it is false, the row suggests only what is on your character's floor.\n" +
+            "设为 true 则推荐房子里所有楼层的行为，而不只是角色所在的楼层。点击后角色会走过去。睡觉仍然去房子里最好的床。设为 false 时只推荐角色所在楼层的行为。", null, "ModManager.ShowWhen=Enabled"));
         var log = new ModLog(Log, "quick-actions.log") { MaxFileBytes = MaxLogBytes };
 
         log.Write($"===== Quick Actions {Version} started: {(isEnabled ? "on" : "off")}");

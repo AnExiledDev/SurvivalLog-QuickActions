@@ -8,7 +8,7 @@ Survival Log suggests actions in a small row of chips above your action queue: e
 
 - **Every suggestion**: all the actions the game suggests show up, not only the best three, and several of the same kind can show at once (two foods, two ways to cheer up).
 - **One chip per action**: the same action on two objects is one chip. Two music players give one "listen to music" chip, and the same food in the fridge and in your bag gives one chip. The chip uses the better-scored object, the one the game itself would have picked.
-- **Every floor of the house**: suggestions come from the basement, the ground floor and upstairs, not only the floor your character is on. Clicking one walks your character there, the way the game already does for a bed on another floor. Sleep still goes to the best bed in the house, as the game picks it. Set `WholeHouse` to `false` to keep the game's one-floor suggestions.
+- **Every floor of the house**: set `WholeHouse` to `true` and suggestions come from the basement, the ground floor and upstairs, not only the floor your character is on. Clicking one walks your character there, the way the game already does for a bed on another floor. Sleep still goes to the best bed in the house, as the game picks it. `WholeHouse` is off when you first install the mod.
 - **Best first**: the row keeps the game's order, best suggestion on the left.
 - **Scrolls sideways**: when there are more chips than fit, the row scrolls. Move the mouse over it and use the scroll wheel.
 - **Status bars don't block the row**: the empty space beside the status bars in the bottom right no longer takes your clicks, so chips at the right end of the row can be clicked. The bars and their buffs still respond as before.

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.3
+
+- Suggestions from every floor of the house (the `WholeHouse` setting) are now off for a new install. Turn it on in the config or on the Mod Manager's Mods screen. A setting you already saved is kept.
+- Made for Survival Log 1.1.20719.
+
 ## 0.3.2
 
 - Now needs Exiled's Toolkit 0.20.0 or newer.
