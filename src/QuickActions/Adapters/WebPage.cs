@@ -1,8 +1,7 @@
 using System;
 using System.IO;
 using System.Threading;
-using ExiledToolkit.Game;
-using GameCore.HotUpdate.ReduxUI;
+using ExiledToolkit.Web;
 using QuickActions.Core;
 
 namespace QuickActions.Adapters;
@@ -66,24 +65,16 @@ internal sealed class WebPage
 
     private bool Run(string javaScript, Il2CppSystem.Action<string>? onAnswer)
     {
-        var webView = GameSingleton.Existing<ReduxUISystem>()?.GetWebUILayer()?.canvasWebViewPrefab?.WebView;
+        Exception? failure;
+        var isSent = onAnswer == null ? WebUi.TryRun(javaScript, out failure) : WebUi.TryRun(javaScript, onAnswer, out failure);
 
-        if (webView == null) return false;
+        if (failure == null) return isSent;
 
-        try
-        {
-            webView.ExecuteJavaScript(javaScript, onAnswer);
+        if (!_hasReportedRunFailure) _log("could not run script in the web UI (reported once): " + failure.Message);
 
-            return true;
-        }
-        catch (Exception ex)
-        {
-            if (!_hasReportedRunFailure) _log("could not run script in the web UI (reported once): " + ex.Message);
+        _hasReportedRunFailure = true;
 
-            _hasReportedRunFailure = true;
-
-            return false;
-        }
+        return false;
     }
 
     private string Script()

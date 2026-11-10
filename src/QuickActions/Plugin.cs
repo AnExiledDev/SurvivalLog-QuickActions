@@ -10,11 +10,11 @@ using QuickActions.Adapters;
 namespace QuickActions;
 
 [BepInPlugin(Guid, "Quick Actions", Version)]
-[BepInDependency(ToolkitGuid, ">=0.19.0")]
+[BepInDependency(ToolkitGuid, ">=0.20.0")]
 public sealed class Plugin : BasePlugin
 {
     private const string Guid = "com.dev.survivallog.quickactions";
-    private const string Version = "0.3.1";
+    private const string Version = "0.3.2";
     private const string ToolkitGuid = "com.dev.survivallog.exiledtoolkit";
     private const long MaxLogBytes = 1024 * 1024;
 

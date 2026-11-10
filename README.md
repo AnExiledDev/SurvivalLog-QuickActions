@@ -33,7 +33,7 @@ Works in English and Chinese: the chips show the game's action names in your gam
 
 - Survival Log 1.1.20719. Built for this version; a game update can break it until the mod is updated.
 - The [BepInEx Pack for Survival Log](https://www.nexusmods.com/survivallog/mods/12), the BepInEx 6 (IL2CPP) build for the game, version `6.0.0-be.788`.
-- [Exiled's Toolkit](https://github.com/AnExiledDev/SurvivalLog-ExiledToolkit) 0.19.0 or newer. Quick Actions does not load without it. It applies settings changed on the Mod Manager's Mods screen without restarting the game.
+- [Exiled's Toolkit](https://github.com/AnExiledDev/SurvivalLog-ExiledToolkit) 0.20.0 or newer. Quick Actions does not load without it. It applies settings changed on the Mod Manager's Mods screen without restarting the game.
 - Optional: [Mod Manager](https://www.nexusmods.com/survivallog/mods/73). With it, you can change every setting in game on its Mods screen and see what each one does, without opening the config file.
 
 ## Install
@@ -78,7 +78,7 @@ This is a BepInEx 6 IL2CPP plugin. It compiles against BepInEx and the game's IL
 dotnet build src/QuickActions -c Release -p:GameDir="C:\path\to\Survival Log"
 ```
 
-`GameDir` is the game folder. The default in the project file is a local path you will almost certainly need to override. Compiling also needs Exiled's Toolkit 0.19.0 or newer: point `-p:ToolkitDll="C:\path\to\ExiledToolkit.dll"` at its DLL. The output DLL is at `src\QuickActions\bin\Release\QuickActions.dll`.
+`GameDir` is the game folder. The default in the project file is a local path you will almost certainly need to override. Compiling also needs Exiled's Toolkit 0.20.0 or newer: point `-p:ToolkitDll="C:\path\to\ExiledToolkit.dll"` at its DLL. The output DLL is at `src\QuickActions\bin\Release\QuickActions.dll`.
 
 The unit tests cover the pure rules for picking the row (one chip per action, best first, hidden chips, the dance rule and the cap) and need nothing from the game:
 
