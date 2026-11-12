@@ -14,7 +14,7 @@ namespace QuickActions;
 public sealed class Plugin : BasePlugin
 {
     private const string Guid = "com.dev.survivallog.quickactions";
-    private const string Version = "0.3.3";
+    private const string Version = "0.3.4";
     private const string ToolkitGuid = "com.dev.survivallog.exiledtoolkit";
     private const long MaxLogBytes = 1024 * 1024;
 
@@ -22,13 +22,13 @@ public sealed class Plugin : BasePlugin
     {
         // Turning it off would have to take the page script back out of the web UI, so it waits for the next start.
         var isEnabled = Config.Bind("General", "Enabled", true, new ConfigDescription(
-            "Show every action the game suggests in one row, one chip per action. Scroll the row sideways with the mouse wheel. Without the mod, the game shows at most three. Set to false to keep the game's row. Takes effect at the next game start.\n" +
-            "在一行里显示游戏推荐的所有行为，每个行为一个推荐项，鼠标放在这一行上用滚轮左右滚动。游戏自己最多只显示三个。设为 false 则保留游戏自带的那一行。下次启动游戏时生效。", null, "ModManager.Restart")).Value;
+            "Show every action the game suggests in one row, one chip per action. Scroll the row sideways with the mouse wheel. Without the mod, the game shows at most three. Set to false to go back to the game's normal row. Takes effect at the next game start.\n" +
+            "在一行里显示游戏推荐的所有行为，每个行为一个推荐项，鼠标放在这一行上用滚轮左右滚动。不装本模组时，游戏最多只显示三个。设为 false 则恢复游戏原来的那一行。下次启动游戏时生效。", null, "ModManager.Restart")).Value;
         var maxChips = Config.Bind("General", "MaxChips", 0,
-            new ConfigDescription("The most chips the row shows, in the game's order, best first. 0 shows them all. Numbers below 0 count as 0.\n" +
+            new ConfigDescription("The most chips the row shows, in the game's order, best first. 0 shows them all. A number below 0 counts as 0.\n" +
             "这一行最多显示几个推荐项，按游戏的推荐顺序排列，最好的在最前。0 表示全部显示，小于 0 的数按 0 处理。", null, "ModManager.ShowWhen=Enabled"));
         var wholeHouse = Config.Bind("General", "WholeHouse", false,
-            new ConfigDescription("Set to true to suggest actions from every floor of the house, not just the floor your character is on. Clicking one walks your character there. Sleep still goes to the best bed in the house. When it is false, the row suggests only what is on your character's floor.\n" +
+            new ConfigDescription("Set to true to suggest actions from every floor of the house, instead of only the floor your character is on. Clicking one walks your character there. Sleep still goes to the best bed in the house. When it is false, the row suggests only what is on your character's floor.\n" +
             "设为 true 则推荐房子里所有楼层的行为，而不只是角色所在的楼层。点击后角色会走过去。睡觉仍然去房子里最好的床。设为 false 时只推荐角色所在楼层的行为。", null, "ModManager.ShowWhen=Enabled"));
         var log = new ModLog(Log, "quick-actions.log") { MaxFileBytes = MaxLogBytes };
 

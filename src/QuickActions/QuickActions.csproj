@@ -37,7 +37,7 @@
   <!-- What the Mod Manager's Mods screen shows about this mod. -->
   <ItemGroup>
     <AssemblyMetadata Include="ModManager.Name" Value="Quick Actions&#10;快捷行为" />
-    <AssemblyMetadata Include="ModManager.Description" Value="See every action the game suggests, not just three, in one row of chips you can scroll sideways with the mouse wheel. One chip per action, best first. Turn on WholeHouse to add suggestions from every floor of the house.&#10;在一行里显示游戏推荐的所有行为，不再只有三个，可用滚轮左右滚动。打开 WholeHouse 可以加入房子里所有楼层的推荐。" />
+    <AssemblyMetadata Include="ModManager.Description" Value="Shows every action the game suggests in one row of chips, instead of only three. Scroll the row sideways with the mouse wheel. Each action shows once, with the best one first. Turn on WholeHouse to add suggestions from every floor of the house.&#10;在一行里显示游戏推荐的所有行为，不再只有三个，可用滚轮左右滚动。每个行为只显示一次，最好的排在最前。打开 WholeHouse 可以加入房子里所有楼层的推荐。" />
     <AssemblyMetadata Include="ModManager.Author" Value="AnExiledDev" />
     <AssemblyMetadata Include="ModManager.Category" Value="Interface" />
     <AssemblyMetadata Include="ModManager.GameVersion" Value="1.1.20719" />

@@ -1,20 +1,20 @@
 Name: Quick Actions
-Summary: See every action the game suggests, not just three, in one row of chips you scroll sideways with the mouse wheel. Best suggestion first, and one chip per action even when several objects offer it. Turn on WholeHouse for suggestions from every floor of the house. Set MaxChips if you want a cap. No new keys, and nothing added to your save.
+Summary: Shows every action the game suggests in one row of chips above your action queue, instead of only three. Scroll the row sideways with the mouse wheel. Each action shows once, with the best one first. Turn on WholeHouse for suggestions from every floor of the house, or set MaxChips to limit the row. No new keys, and nothing is added to your save.
 
 Description (BBCode):
 [center][img]https://sldb.core-directive.com/media/save/1-save-safe.png[/img][/center]
 
-Survival Log suggests actions in a small row of chips above your action queue, but it only ever shows three of them, and only one of each kind. Quick Actions shows every suggested action, best first, in one row that scrolls sideways when it gets long. It only changes which chips the row shows; it never changes what a chip does, your character, the world or a save.
+Survival Log suggests actions in a small row of chips above your action queue, but it only ever shows three of them, and only one of each kind. Quick Actions shows every suggested action, best first, in one row that scrolls sideways when it gets long. It only changes which chips show up. Clicking a chip does the same thing it always did, and nothing is added to your save.
 
 [size=5]Main features[/size]
 [list]
-[*][b]Every suggestion[/b]: all the actions the game suggests show up, and several of the same kind can show at once (two foods, two ways to cheer up).[/*]
-[*][b]One chip per action[/b]: the same action on two objects is one chip. Two music players give one chip, and the same food in the fridge and in your bag gives one chip.[/*]
-[*][b]Every floor of the house[/b]: turn on WholeHouse and suggestions come from the basement, the ground floor and upstairs, not only the floor your character is on. Clicking one walks your character there. Sleep still goes to the best bed in the house. It is off when you first install the mod.[/*]
-[*][b]Best first[/b]: the row keeps the game's order, best suggestion on the left.[/*]
+[*][b]Every suggestion[/b]: every action the game suggests shows up, and several of the same kind can show at once (two foods, two ways to cheer up).[/*]
+[*][b]One chip per action[/b]: the same action on two objects is one chip. Two music players give one chip, and the same food in the fridge and in your bag gives one chip. The chip uses whichever object the game rates higher.[/*]
+[*][b]Every floor of the house[/b]: turn on WholeHouse and suggestions come from the basement, the ground floor and upstairs, instead of only the floor your character is on. Clicking one walks your character there. Sleep still goes to the best bed in the house. WholeHouse is off when you first install the mod.[/*]
+[*][b]Best first[/b]: the row keeps the game's order, with the best suggestion on the left.[/*]
 [*][b]Scrolls sideways[/b]: when there are more chips than fit, move the mouse over the row and use the scroll wheel.[/*]
-[*][b]The game's rules stay[/b]: a chip you just clicked, or an action already in your queue, is left out as before.[/*]
-[*][b]A cap if you want one[/b]: set MaxChips to show at most that many chips.[/*]
+[*][b]Hidden chips stay hidden[/b]: a chip you just clicked, or an action already waiting in your queue, is left out like before. When you are starving or exhausted, the game still hides everything but eating and sleeping.[/*]
+[*][b]Limit the number of chips[/b]: set MaxChips to show at most that many chips.[/*]
 [/list]
 No new keys or buttons. Quick Actions adds no data to your save and does not edit game files. You can remove it at any time.
 
@@ -51,11 +51,11 @@ Works in English and Chinese.
 Delete [font=Courier New]QuickActions.dll[/font] from the [font=Courier New]BepInEx\plugins[/font] folder.
 
 [size=5]Configuration[/size]
-To turn the mod off or cap the number of chips, edit [font=Courier New]BepInEx\config\com.dev.survivallog.quickactions.cfg[/font] while the game is closed, or do it in game on the Mod Manager's Mods screen, where changes take effect at once (see [url=https://github.com/AnExiledDev/SurvivalLog-QuickActions/blob/main/CONFIG.md]CONFIG.md[/url] for every setting). Enabled takes effect at the next game start.
+To turn the mod off or limit the number of chips, edit [font=Courier New]BepInEx\config\com.dev.survivallog.quickactions.cfg[/font] while the game is closed, or do it in game on the Mod Manager's Mods screen, where changes take effect at once (see [url=https://github.com/AnExiledDev/SurvivalLog-QuickActions/blob/main/CONFIG.md]CONFIG.md[/url] for every setting). Enabled takes effect at the next game start.
 
 [size=5]Feedback[/size]
 Found a bug or have an idea? Come say hi on the [url=https://discord.gg/trTsyxUFqg]Core Directive Discord[/url], or post in this page's Posts tab. For bugs, please include [font=Courier New]BepInEx\LogOutput.log[/font] and [font=Courier New]BepInEx\quick-actions.log[/font].
-To reach me directly, message [b]exiled.dev[/b] on Discord; you can find me in the [url=https://discord.gg/MZGg4gQAUe]official Survival Log Discord[/url]. I'm also on X as [url=https://x.com/AnExiledDev]@AnExiledDev[/url].
+To reach me directly, message [b]exiled.dev[/b] on Discord. You can find me in the [url=https://discord.gg/MZGg4gQAUe]official Survival Log Discord[/url]. I'm also on X as [url=https://x.com/AnExiledDev]@AnExiledDev[/url].
 
 [size=5]Source and license[/size]
 Open source under MIT: [url=https://github.com/AnExiledDev/SurvivalLog-QuickActions]github.com/AnExiledDev/SurvivalLog-QuickActions[/url]
@@ -63,17 +63,17 @@ Open source under MIT: [url=https://github.com/AnExiledDev/SurvivalLog-QuickActi
 [line]
 [size=5]简体中文[/size]
 
-Survival Log 会在行动队列上方用一小行推荐项提示你可以做的行为，但最多只显示三个，而且同一类只显示一个。Quick Actions 会把游戏推荐的所有行为按从好到差的顺序放在同一行里，太长时可以左右滚动。它只改变这一行显示哪些推荐项，不会改变推荐项的效果、你的角色、世界或存档。
+Survival Log 会在行动队列上方用一小行推荐项提示你可以做的行为，但最多只显示三个，而且同一类只显示一个。Quick Actions 会把游戏推荐的所有行为按从好到差的顺序放在同一行里，太长时可以左右滚动。它只改变这一行显示哪些推荐项。点击推荐项的效果和原来一样，也不会往存档里添加任何内容。
 
 [size=5]主要功能[/size]
 [list]
 [*][b]所有推荐[/b]：游戏推荐的行为全部显示，同一类也可以同时出现多个（两种食物、两种提升心情的方式）。[/*]
-[*][b]一个行为一个推荐项[/b]：对两个物体的同一行为只算一个推荐项。两台音乐播放器只显示一个，冰箱和背包里的同一种食物也只显示一个。[/*]
-[*][b]整栋房子[/b]：打开 WholeHouse 后，推荐来自地下室、一楼和楼上，而不只是角色所在的楼层。点击后角色会走过去。睡觉仍然去房子里最好的床。刚安装时这项是关闭的。[/*]
+[*][b]一个行为一个推荐项[/b]：对两个物体的同一行为只算一个推荐项。两台音乐播放器只显示一个，冰箱和背包里的同一种食物也只显示一个。推荐项会用游戏评分更高的那个物体。[/*]
+[*][b]整栋房子[/b]：打开 WholeHouse 后，推荐来自地下室、一楼和楼上，而不只是角色所在的楼层。点击后角色会走过去。睡觉仍然去房子里最好的床。刚安装时 WholeHouse 是关闭的。[/*]
 [*][b]最好的在最前[/b]：保持游戏的推荐顺序，最好的推荐在最左边。[/*]
 [*][b]左右滚动[/b]：推荐项放不下时，把鼠标放在这一行上用滚轮滚动。[/*]
-[*][b]保留游戏原有规则[/b]：刚点过的推荐项，或已经在队列中的行为，照旧不显示。[/*]
-[*][b]可设上限[/b]：设置 MaxChips 后最多只显示这么多个推荐项。[/*]
+[*][b]隐藏的照样隐藏[/b]：刚点过的推荐项，或已经在队列中等待的行为，照旧不显示。角色极度饥饿或极度疲劳时，游戏仍然只显示吃东西和睡觉。[/*]
+[*][b]限制推荐项数量[/b]：设置 MaxChips 后最多只显示这么多个推荐项。[/*]
 [/list]
 没有新增按键或按钮。Quick Actions 不会往存档里添加任何内容，也不会修改游戏文件，随时可以移除。
 

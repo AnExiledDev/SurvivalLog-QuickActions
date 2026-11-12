@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.4
+
+- Clearer wording in the settings and in the mod's description on the Mods screen.
+- Made for Survival Log 1.1.20719.
+
 ## 0.3.3
 
 - Suggestions from every floor of the house (the `WholeHouse` setting) are now off for a new install. Turn it on in the config or on the Mod Manager's Mods screen. A setting you already saved is kept.
@@ -12,18 +17,18 @@
 
 ## 0.3.1
 
-- Now uses Exiled's Toolkit for its shared parts, so it needs Exiled's Toolkit 0.19.0 or newer.
+- Some of the mod's code moved into Exiled's Toolkit, so it now needs Exiled's Toolkit 0.19.0 or newer.
 - Made for Survival Log 1.1.20719.
 
 ## 0.3.0
 
-- The row suggests actions from every floor of the house, not just the floor your character is on. Clicking one walks your character there. Sleep still goes to the best bed in the house. The new WholeHouse setting turns this off.
+- The row suggests actions from every floor of the house, instead of only the floor your character is on. Clicking one walks your character there. Sleep still goes to the best bed in the house. The new WholeHouse setting turns this off.
 - Made for Survival Log 1.1.20719.
 
 ## 0.2.2
 
-- The game's screens run smoother: the mod no longer checks the row of suggestions several times a second, only when the chips in it change.
-- Less work in the background: the mod no longer sends its part of the screen to the game over and over, only after the game's screen reloads.
+- The game's screens run smoother. The mod now checks the row of suggestions only when its chips change, instead of several times a second.
+- The mod now sends its part of the screen to the game only after the game's screen reloads, instead of over and over.
 - Building the row of suggestions takes less work each time the game refreshes it.
 - Made for Survival Log 1.1.19611.
 
@@ -43,5 +48,5 @@
 ## 0.1.2
 
 - First public release.
-- Every action the game suggests is shown, not just three, in one row you can scroll sideways with the mouse wheel.
+- Every action the game suggests is shown instead of only three, in one row you can scroll sideways with the mouse wheel.
 - Each action shows once, with the best suggestion first.

@@ -1,20 +1,20 @@
 # Quick Actions
 
-See every action the game suggests, not just three, in one row you can scroll sideways.
+Shows every action the game suggests in one row you can scroll sideways, instead of only three.
 
-Survival Log suggests actions in a small row of chips above your action queue: eat this, sleep there, listen to music. It only ever shows three of them, and only one of each kind, so a second morale action or a second food never makes it onto the row. Quick Actions shows every suggested action, best first, in one row that scrolls sideways when it gets long. It only changes which chips the row shows. It never changes what a chip does, your character, the world or a save.
+Survival Log suggests actions in a small row of chips above your action queue: eat this, sleep there, listen to music. It only ever shows three of them, and only one of each kind, so a second morale action or a second food never makes it onto the row. Quick Actions shows every suggested action, best first, in one row that scrolls sideways when it gets long. It only changes which chips show up. Clicking a chip does the same thing it always did, and nothing is added to your save.
 
 ## Features
 
-- **Every suggestion**: all the actions the game suggests show up, not only the best three, and several of the same kind can show at once (two foods, two ways to cheer up).
-- **One chip per action**: the same action on two objects is one chip. Two music players give one "listen to music" chip, and the same food in the fridge and in your bag gives one chip. The chip uses the better-scored object, the one the game itself would have picked.
-- **Every floor of the house**: set `WholeHouse` to `true` and suggestions come from the basement, the ground floor and upstairs, not only the floor your character is on. Clicking one walks your character there, the way the game already does for a bed on another floor. Sleep still goes to the best bed in the house, as the game picks it. `WholeHouse` is off when you first install the mod.
-- **Best first**: the row keeps the game's order, best suggestion on the left.
-- **Scrolls sideways**: when there are more chips than fit, the row scrolls. Move the mouse over it and use the scroll wheel.
-- **Status bars don't block the row**: the empty space beside the status bars in the bottom right no longer takes your clicks, so chips at the right end of the row can be clicked. The bars and their buffs still respond as before.
-- **The game's rules stay**: a chip you just clicked, or an action already waiting in your queue, is left out as before, and the game still hides everything but eating and sleeping when you are starving or exhausted.
-- **A cap if you want one**: set `MaxChips` to show at most that many chips.
-- **A log file**: what the mod set up is written to `BepInEx\quick-actions.log`.
+- **Every suggestion**: every action the game suggests shows up, and several of the same kind can show at once (two foods, two ways to cheer up).
+- **One chip per action**: the same action on two objects is one chip. Two music players give one "listen to music" chip, and the same food in the fridge and in your bag gives one chip. The chip uses whichever object the game rates higher.
+- **Every floor of the house**: set `WholeHouse` to `true` and suggestions come from the basement, the ground floor and upstairs, instead of only the floor your character is on. Clicking one walks your character there, the way the game already does for a bed on another floor. Sleep still goes to the best bed in the house. `WholeHouse` is off when you first install the mod.
+- **Best first**: the row keeps the game's order, with the best suggestion on the left.
+- **Scrolls sideways**: when there are more chips than fit, move the mouse over the row and use the scroll wheel.
+- **Status bars don't block the row**: the empty space beside the status bars in the bottom right no longer takes your clicks, so you can click the chips at the right end of the row. The bars and their buffs still respond as before.
+- **Hidden chips stay hidden**: a chip you just clicked, or an action already waiting in your queue, is left out like before. When you are starving or exhausted, the game still hides everything but eating and sleeping.
+- **Limit the number of chips**: set `MaxChips` to show at most that many chips.
+- **A log file**: the mod writes what it set up to `BepInEx\quick-actions.log`.
 
 There are no new keys or buttons.
 
@@ -23,15 +23,16 @@ Quick Actions adds no data to your save and does not edit game files. You can re
 ## Known issues and limits
 
 - "The same action" means the same name and the same icon on the chip. Two different things that happen to share both become one chip.
-- A chip scrolled half out of sight can still take a click on the world just past the row's edge, up to about one chip wide. A chip scrolled fully out of sight takes no clicks. The row also takes clicks in the small gaps between chips and a few pixels above and below them, so the scroll wheel works there.
+- When a chip is scrolled halfway out of sight, its hidden half still blocks clicks on the world just past the edge of the row, up to about one chip wide. A chip scrolled all the way out of sight blocks nothing.
+- Clicks in the small gaps between chips, and a few pixels above and below them, go to the row instead of the world, so the scroll wheel works there too.
 - The scroll wheel over the row scrolls the row. Over the rest of the screen it zooms the camera as usual.
 - The row stops growing at about a third of the screen width (less on small screens) so it stays clear of the panels in the middle of the bottom edge.
 
-Works in English and Chinese: the chips show the game's action names in your game language, the mod adds no words of its own on screen, and every config setting is explained in English and Simplified Chinese.
+Works in English and Chinese. The chips show the game's action names in your game language, the mod adds no words of its own on screen, and every config setting is explained in English and Simplified Chinese.
 
 ## Requirements
 
-- Survival Log 1.1.20719. Built for this version; a game update can break it until the mod is updated.
+- Survival Log 1.1.20719. It was built for this version, and a game update can break it until the mod is updated.
 - The [BepInEx Pack for Survival Log](https://www.nexusmods.com/survivallog/mods/12), the BepInEx 6 (IL2CPP) build for the game, version `6.0.0-be.788`.
 - [Exiled's Toolkit](https://github.com/AnExiledDev/SurvivalLog-ExiledToolkit) 0.20.0 or newer. Quick Actions does not load without it. It applies settings changed on the Mod Manager's Mods screen without restarting the game.
 - Optional: [Mod Manager](https://www.nexusmods.com/survivallog/mods/73). With it, you can change every setting in game on its Mods screen and see what each one does, without opening the config file.
@@ -56,17 +57,17 @@ Settings live in `BepInEx\config\com.dev.survivallog.quickactions.cfg`, created 
 
 Built against BepInEx `6.0.0-be.788`.
 
-Check `BepInEx\LogOutput.log` for a line starting `===== Quick Actions`, followed by the mod's version and `started`. It says whether the mod is on. The next lines should say the suggestion hook went in and give the chip limit (`max chips`, again each time you change it), and a moment later, that the page script was sent to the web UI.
+Check `BepInEx\LogOutput.log` for a line starting `===== Quick Actions`, followed by the mod's version and `started`, then `on` or `off`. Next should come a line starting `hooked` and a `max chips` line, which shows up again each time you change that setting. A moment later, a line says the page script was sent to the web UI.
 
 The same lines are in `BepInEx\quick-actions.log`, which survives restarts.
 
-If the row still shows only three chips, look in the log for a line starting `could not` or `failed`. When the mod cannot do its part, it leaves the game's row in place.
+If the row still shows only three chips, look in the log for a line starting `could not` or `failed`. When something goes wrong, the mod leaves the game's normal row of three in place.
 
 ## Feedback and bug reports
 
 Found a bug, have an idea, or something feels off? Come say so on the Core Directive Discord: https://discord.gg/trTsyxUFqg . You can also post in the Posts tab of the mod's Nexus Mods page. When reporting a bug, attach `BepInEx\LogOutput.log` and `BepInEx\quick-actions.log`.
 
-To reach me directly, message `exiled.dev` on Discord; you can find me in the [official Survival Log Discord](https://discord.gg/MZGg4gQAUe). I'm also on X as [@AnExiledDev](https://x.com/AnExiledDev).
+To reach me directly, message `exiled.dev` on Discord. You can find me in the [official Survival Log Discord](https://discord.gg/MZGg4gQAUe). I'm also on X as [@AnExiledDev](https://x.com/AnExiledDev).
 
 A Survival Log wiki with detailed documentation for all of my mods is coming soon.
 
