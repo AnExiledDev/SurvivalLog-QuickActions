@@ -51,13 +51,13 @@ Delete `QuickActions.dll` from the `BepInEx\plugins` folder. For a clean slate, 
 
 ## Configuration
 
-Settings live in `BepInEx\config\com.dev.survivallog.quickactions.cfg`, created the first time the game starts with the mod. Change them in game on the Mod Manager's Mods screen, where they take effect at once, or edit the file while the game is closed. Enabled takes effect at the next game start. See [CONFIG.md](CONFIG.md) for every setting.
+Settings live in `BepInEx\config\com.dev.survivallog.quickactions.cfg`, created the first time the game starts with the mod. Change them in game on the Mod Manager's Mods screen, where they take effect at once, or edit the file while the game is closed. See [CONFIG.md](CONFIG.md) for every setting.
 
 ## Troubleshooting
 
 Built against BepInEx `6.0.0-be.788`.
 
-Check `BepInEx\LogOutput.log` for a line starting `===== Quick Actions`, followed by the mod's version and `started`, then `on` or `off`. Next should come a line starting `hooked` and a `max chips` line, which shows up again each time you change that setting. A moment later, a line says the page script was sent to the web UI.
+Check `BepInEx\LogOutput.log` for a line starting `===== Quick Actions`, followed by the mod's version and `started`. Next should come a line starting `hooked`, a line starting `on` (`off` while Enabled is false) and a `max chips` line. The `on` or `off` line and the `max chips` line show up again each time you change those settings. A moment later, a line says the page script was sent to the web UI.
 
 The same lines are in `BepInEx\quick-actions.log`, which survives restarts.
 

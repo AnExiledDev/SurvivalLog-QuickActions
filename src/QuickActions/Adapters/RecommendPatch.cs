@@ -26,6 +26,7 @@ internal static class RecommendPatch
 
     private static PatchKit? _hooks;
     private static int _maxChips;
+    private static bool _isOn;
 
     /// <returns>Whether the hook was placed.</returns>
     public static bool Apply(PatchKit hooks)
@@ -42,12 +43,15 @@ internal static class RecommendPatch
     /// <summary>Used from the next time the game builds the row. Set on the main thread, where the row is built.</summary>
     public static void UseMaxChips(int maxChips) => _maxChips = maxChips;
 
+    /// <summary>Off, the game's pick of three is kept. Used from the next time the game builds the row.</summary>
+    public static void UseEveryAction(bool isOn) => _isOn = isOn;
+
     private static void ShowEveryAction(SmartRecommendManager __instance, GameChips candidates, ref GameChips __result)
     {
         try
         {
             // With nothing suggested the game's row is already the empty one this would build.
-            if (__instance == null || candidates == null || candidates.Count == 0) return;
+            if (!_isOn || __instance == null || candidates == null || candidates.Count == 0) return;
 
             ReadCandidates(__instance, candidates);
 

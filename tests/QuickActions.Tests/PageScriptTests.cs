@@ -23,6 +23,30 @@ public class PageScriptTests
     }
 
     [Fact]
+    public void Turned_off_the_row_goes_back_to_the_games()
+    {
+        var script = Settled();
+
+        script.Run("page.row().scrollLeft = 70; window.__slquickactions.setOn(false); for (var i = 0; i < 5; i++) poll(); nextFrame();");
+
+        Assert.Equal("on,on,on,on", script.Text("clickable(page.row())"));
+        Assert.Equal("", script.Text("page.doc.getElementById('slqa-style').textContent"));
+        Assert.False(script.Is("page.row().hasAttribute('data-interactive')"));
+        Assert.Equal(0, script.Number("page.row().scrollLeft"));
+    }
+
+    [Fact]
+    public void Turned_on_again_the_row_scrolls_again()
+    {
+        var script = Settled();
+
+        script.Run("window.__slquickactions.setOn(false); window.__slquickactions.setOn(true); poll(); nextFrame();");
+
+        Assert.Equal("on,on,on,off", script.Text("clickable(page.row())"));
+        Assert.NotEqual("", script.Text("page.doc.getElementById('slqa-style').textContent"));
+    }
+
+    [Fact]
     public void Chips_out_of_sight_stop_taking_clicks()
     {
         var script = Settled();

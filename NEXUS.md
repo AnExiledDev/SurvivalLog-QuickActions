@@ -51,7 +51,7 @@ Works in English and Chinese.
 Delete [font=Courier New]QuickActions.dll[/font] from the [font=Courier New]BepInEx\plugins[/font] folder.
 
 [size=5]Configuration[/size]
-To turn the mod off or limit the number of chips, edit [font=Courier New]BepInEx\config\com.dev.survivallog.quickactions.cfg[/font] while the game is closed, or do it in game on the Mod Manager's Mods screen, where changes take effect at once (see [url=https://github.com/AnExiledDev/SurvivalLog-QuickActions/blob/main/CONFIG.md]CONFIG.md[/url] for every setting). Enabled takes effect at the next game start.
+To turn the mod off or limit the number of chips, edit [font=Courier New]BepInEx\config\com.dev.survivallog.quickactions.cfg[/font] while the game is closed, or do it in game on the Mod Manager's Mods screen, where changes take effect at once (see [url=https://github.com/AnExiledDev/SurvivalLog-QuickActions/blob/main/CONFIG.md]CONFIG.md[/url] for every setting).
 
 [size=5]Feedback[/size]
 Found a bug or have an idea? Come say hi in the [url=https://discord.gg/pDrQtqbZgb]unofficial modding Discord for Survival Log[/url], or post in this page's Posts tab. For bugs, please include [font=Courier New]BepInEx\LogOutput.log[/font] and [font=Courier New]BepInEx\quick-actions.log[/font].
@@ -109,7 +109,7 @@ Survival Log 会在行动队列上方用一小行推荐项提示你可以做的�
 从 [font=Courier New]BepInEx\plugins[/font] 文件夹中删除 [font=Courier New]QuickActions.dll[/font]。
 
 [size=5]配置[/size]
-如需关闭模组或限制推荐项数量，可以在游戏内 Mod Manager 的「模组」界面修改（改动立即生效），也可以在游戏关闭时编辑 [font=Courier New]BepInEx\config\com.dev.survivallog.quickactions.cfg[/font]。配置文件中每项设置都有中文说明，完整说明见 [url=https://github.com/AnExiledDev/SurvivalLog-QuickActions/blob/main/CONFIG.md]CONFIG.md[/url]（英文）。Enabled 会在下次启动游戏时生效。
+如需关闭模组或限制推荐项数量，可以在游戏内 Mod Manager 的「模组」界面修改（改动立即生效），也可以在游戏关闭时编辑 [font=Courier New]BepInEx\config\com.dev.survivallog.quickactions.cfg[/font]。配置文件中每项设置都有中文说明，完整说明见 [url=https://github.com/AnExiledDev/SurvivalLog-QuickActions/blob/main/CONFIG.md]CONFIG.md[/url]（英文）。
 
 [size=5]反馈[/size]
 发现 bug 或有好点子？欢迎来 [url=https://discord.gg/pDrQtqbZgb]Survival Log 非官方模组 Discord[/url] 打个招呼，或在本页的「Posts」标签里发帖。报告 bug 时，请附上 [font=Courier New]BepInEx\LogOutput.log[/font] 和 [font=Courier New]BepInEx\quick-actions.log[/font]。

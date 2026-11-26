@@ -26,6 +26,12 @@ internal sealed class WebPage
     private bool _hasReportedInstall;
     private bool _hasReportedRunFailure;
 
+    /// <summary>Set from the Enabled setting. Off, the row goes back to the game's at the next frame.</summary>
+    public bool IsOn
+    {
+        set => _watch.IsOn = value;
+    }
+
     public WebPage(Action<string> log)
     {
         _log = log;
@@ -45,6 +51,10 @@ internal sealed class WebPage
                 return;
             case PageCall.Install:
                 Install();
+
+                return;
+            case PageCall.TurnOff:
+                Run(ScriptWatch.TurnOffCall, null);
 
                 return;
             default:

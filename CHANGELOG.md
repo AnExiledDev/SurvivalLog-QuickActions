@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.6
+
+- Enabled now applies right away. Turn it off and the row goes back to the game's three suggestions without a restart.
+- Made for Survival Log 1.1.21671.
+
 ## 0.3.5
 
 - The `Enabled` setting now says why it waits for the next game start.

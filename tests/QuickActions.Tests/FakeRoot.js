@@ -200,6 +200,11 @@ Element.prototype.setAttribute = function (name, value) {
     report({ type: 'attributes', target: this, attributeName: name });
 };
 
+Element.prototype.removeAttribute = function (name) {
+    delete this.attributes[name];
+    report({ type: 'attributes', target: this, attributeName: name });
+};
+
 Element.prototype.addEventListener = function (type, listener) {
     (this.listeners[type] = this.listeners[type] || []).push(listener);
 };

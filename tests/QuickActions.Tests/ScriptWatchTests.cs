@@ -18,6 +18,50 @@ public class ScriptWatchTests
     }
 
     [Fact]
+    public void Turned_off_the_page_gets_one_call_and_then_nothing()
+    {
+        var watch = new ScriptWatch();
+        var sent = new List<PageCall>();
+
+        watch.Step(0, null);
+        watch.IsOn = false;
+
+        for (long now = 16; now < 20_000; now += 16)
+        {
+            var call = watch.Step(now, ScriptWatch.Present);
+
+            if (call != PageCall.Nothing) sent.Add(call);
+        }
+
+        Assert.Equal(new[] { PageCall.TurnOff }, sent);
+    }
+
+    [Fact]
+    public void Turned_on_again_the_page_is_asked_at_once()
+    {
+        var watch = new ScriptWatch();
+
+        watch.Step(0, ScriptWatch.Present);
+        watch.IsOn = false;
+        watch.Step(16, null);
+        watch.IsOn = true;
+
+        Assert.Equal(PageCall.Probe, watch.Step(32, null));
+    }
+
+    [Fact]
+    public void Off_and_on_again_before_a_frame_sends_no_turn_off()
+    {
+        var watch = new ScriptWatch();
+
+        watch.Step(0, null);
+        watch.IsOn = false;
+        watch.IsOn = true;
+
+        Assert.NotEqual(PageCall.TurnOff, watch.Step(16, ScriptWatch.Present));
+    }
+
+    [Fact]
     public void A_page_that_still_has_the_script_is_never_sent_it_again()
     {
         var watch = new ScriptWatch();
@@ -123,11 +167,18 @@ public class ScriptWatchTests
     }
 
     [Fact]
-    public void The_probe_reads_the_flag_page_js_sets()
+    public void The_plugins_calls_work_on_the_real_page_script()
     {
-        var pageScript = PageScript.Source();
+        var script = new PageScript();
 
-        Assert.Contains("window.__slquickactions", ScriptWatch.Probe);
-        Assert.Contains("window.__slquickactions = true", pageScript);
+        script.Run("var page = corePage(['Eat bread', 'Sleep', 'Play guitar', 'Repair door']); var frame = openFrame(page); poll(); nextFrame();");
+        script.Run(ScriptWatch.TurnOffCall);
+
+        Assert.Equal("on,on,on,on", script.Text("clickable(page.row())"));
+        Assert.Equal(ScriptWatch.Present, script.Text(ScriptWatch.Probe));
+
+        script.Run("poll(); nextFrame();");
+
+        Assert.Equal("on,on,on,off", script.Text("clickable(page.row())"));
     }
 }

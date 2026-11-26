@@ -7,10 +7,11 @@
 // change instead of on every check. This script can run before the Toolkit's page API does; it waits in the Toolkit's
 // queue until then.
 // The plugin sends this script again only when the page has lost it; the guard below makes a second copy return at once.
+// setOn(false) puts the row back the way the game draws it, for the mod's Enabled setting; setOn(true) picks it up again.
 (function () {
   if (window.__slquickactions) return;
 
-  window.__slquickactions = true;
+  window.__slquickactions = { setOn: setOn };
 
   var PAGE = /CoreUI1\.html/;
   var STYLE_ID = 'slqa-style';
@@ -44,6 +45,7 @@
   var toolkit = null;
   var reported = {};
   var held = null;
+  var isOn = true;
 
   (window.ExiledToolkitReady = window.ExiledToolkitReady || []).push(function (etk) {
     toolkit = etk;
@@ -61,12 +63,49 @@
     } catch (e) {}
   }
 
+  // ===== On and off =====
+
+  function setOn(value) {
+    value = !!value;
+
+    if (value === isOn) return;
+
+    isOn = value;
+
+    // On again, the next page check holds the page as on a first visit.
+    if (!isOn) guarded('turning off', putBack)();
+  }
+
+  // Everything this script changed goes back: the style, the chips' clicks, the scroll and the row's mark.
+  function putBack() {
+    if (!held) return;
+
+    var row = held.row;
+
+    if (toolkit) toolkit.addStyle(held.doc, STYLE_ID, '');
+
+    if (row) {
+      for (var i = 0; i < row.children.length; i++) {
+        if (row.children[i].style.pointerEvents) row.children[i].style.pointerEvents = '';
+      }
+
+      row.scrollLeft = 0;
+      row.__slqaFirst = null;
+
+      if (row.__slqaMarked) row.removeAttribute('data-interactive');
+
+      row.__slqaMarked = false;
+    }
+
+    release();
+  }
+
   // ===== Holding the page =====
 
   // The common case of every check: the same page is still there, so nothing is searched or measured. A page the game
   // dropped, or reloaded into the same frame, still reports its old elements as connected, so the frame is checked too.
   function onPage(doc, frame) {
-    if (isHeld()) return;
+    if (!isOn || isHeld()) return;
 
     release();
 
@@ -212,13 +251,19 @@
 
     // The game's click-through only lets the world have a click outside elements marked like this, so the gaps
     // between chips belong to the row too and the wheel over them scrolls the row.
-    if (!row.hasAttribute('data-interactive')) row.setAttribute('data-interactive', '');
+    if (!row.hasAttribute('data-interactive')) {
+      row.setAttribute('data-interactive', '');
+      row.__slqaMarked = true;
+    }
 
     showNewBest(row);
     fitChips(row);
   }
 
+  // The row keeps these listeners after the script is turned off, so they check first.
   function scrollSideways(event) {
+    if (!isOn) return;
+
     var row = event.currentTarget;
     var room = row.scrollWidth - row.clientWidth;
 
@@ -236,7 +281,7 @@
   function onScrolled(event) {
     var row = event.currentTarget;
 
-    if (row.__slqaFrame) return;
+    if (!isOn || row.__slqaFrame) return;
 
     var view = row.ownerDocument.defaultView;
 
