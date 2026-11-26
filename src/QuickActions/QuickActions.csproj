@@ -40,7 +40,7 @@
     <AssemblyMetadata Include="ModManager.Description" Value="Shows every action the game suggests in one row of chips, instead of only three. Scroll the row sideways with the mouse wheel. Each action shows once, with the best one first. Turn on WholeHouse to add suggestions from every floor of the house.&#10;在一行里显示游戏推荐的所有行为，不再只有三个，可用滚轮左右滚动。每个行为只显示一次，最好的排在最前。打开 WholeHouse 可以加入房子里所有楼层的推荐。" />
     <AssemblyMetadata Include="ModManager.Author" Value="AnExiledDev" />
     <AssemblyMetadata Include="ModManager.Category" Value="Interface" />
-    <AssemblyMetadata Include="ModManager.GameVersion" Value="1.1.20719" />
+    <AssemblyMetadata Include="ModManager.GameVersion" Value="1.1.21671" />
     <AssemblyMetadata Include="ModManager.Settings" Value="Restart" />
     <AssemblyMetadata Include="ModManager.GitHub" Value="AnExiledDev/SurvivalLog-QuickActions" />
     <AssemblyMetadata Include="ModManager.Changelog" Value="https://github.com/AnExiledDev/SurvivalLog-QuickActions/blob/main/CHANGELOG.md" />

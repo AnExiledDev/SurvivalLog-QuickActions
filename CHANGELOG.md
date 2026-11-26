@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.5
+
+- The `Enabled` setting now says why it waits for the next game start.
+- Made for Survival Log 1.1.21671.
+
 ## 0.3.4
 
 - Clearer wording in the settings and in the mod's description on the Mods screen.
